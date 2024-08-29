@@ -1,3 +1,4 @@
+import React from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Popup from 'reactjs-popup'

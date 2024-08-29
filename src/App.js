@@ -1,11 +1,12 @@
 import {Switch, Route} from 'react-router-dom'
-import {Component} from 'react'
+import React, {Component} from 'react'
 
 import {IoHomeSharp} from 'react-icons/io5'
 import {HiFire} from 'react-icons/hi'
 import {IoLogoGameControllerB} from 'react-icons/io'
 import {RiMenuAddFill} from 'react-icons/ri'
 
+import RegisterForm from './components/RegisterForm'
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
 import Trending from './components/Trending'
@@ -101,6 +102,7 @@ class App extends Component {
         }}
       >
         <Switch>
+          <Route exact path="/register" component={RegisterForm} />
           <Route exact path="/login" component={LoginForm} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/trending" component={Trending} />

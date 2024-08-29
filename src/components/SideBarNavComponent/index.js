@@ -1,3 +1,4 @@
+import React from 'react'
 import SideBarNavItems from '../SideBarNavItems'
 
 import './index.css'

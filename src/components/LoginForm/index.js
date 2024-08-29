@@ -1,7 +1,8 @@
-import {Component} from 'react'
+import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
+import axios from 'axios'
 import Cookies from 'js-cookie'
 import ReactContext from '../../context/ReactContext'
-import './index.css'
 import {
   LoginContainer,
   LoginCardContainer,
@@ -9,23 +10,22 @@ import {
   NameContainer,
   NameLabel,
   UsernameInput,
-  CheckBoxContainer,
-  CheckBoxElement,
-  CheckBoxLabel,
   LoginButton,
+  ErrorMsg,
+  LinkText,
 } from './LoginStyledComponent'
 
 class LoginForm extends Component {
   state = {
-    username: '',
+    email: '',
     password: '',
     showPassword: false,
     errorMsg: '',
     isError: false,
   }
 
-  setUsername = event => {
-    this.setState({username: event.target.value})
+  setUserEmail = event => {
+    this.setState({email: event.target.value})
   }
 
   setPassword = event => {
@@ -45,24 +45,22 @@ class LoginForm extends Component {
 
   submitForm = async event => {
     event.preventDefault()
-    const {username, password} = this.state
-    const userDetails = {username, password}
+    const {email, password} = this.state
+    const userDetails = {email, password}
 
-    const url = 'https://apis.ccbp.in/login'
-    console.log(url)
+    const url = 'http://localhost:5000/login'
 
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(userDetails),
-    }
-
-    const response = await fetch(url, options)
-    const data = await response.json()
-
-    if (response.status === 200) {
-      this.onSubmitSuccess(data.jwt_token)
-    } else {
-      this.setState({isError: true, errorMsg: data.error_msg})
+    try {
+      const response = await axios.post(url, userDetails)
+      this.onSubmitSuccess(response.data.jwt_token)
+    } catch (error) {
+      console.log(error)
+      this.setState({
+        isError: true,
+        errorMsg: error.response
+          ? error.response.data
+          : 'Something went wrong',
+      })
     }
   }
 
@@ -91,18 +89,19 @@ class LoginForm extends Component {
               <LoginCardContainer
                 isDarkMode={isDarkMode}
                 onSubmit={this.submitForm}
+                autoComplete="off"
               >
                 {lodoImgUrl}
                 <NameContainer>
-                  <NameLabel htmlFor="username" isDarkMode>
-                    USERNAME
+                  <NameLabel htmlFor="email" isDarkMode>
+                    EMAIL
                   </NameLabel>
                   <UsernameInput
                     isDarkMode
                     type="text"
-                    id="username"
-                    placeholder="rahul"
-                    onChange={this.setUsername}
+                    id="email"
+                    placeholder="Enter your email"
+                    onChange={this.setUserEmail}
                   />
                 </NameContainer>
                 <NameContainer isDarkMode>
@@ -112,25 +111,20 @@ class LoginForm extends Component {
                   <UsernameInput
                     type={showPassword ? 'text' : 'password'}
                     id="password"
-                    placeholder="rahul@2021"
+                    placeholder="Enter your password"
                     onChange={this.setPassword}
                     isDarkMode
                   />
                 </NameContainer>
-                <CheckBoxContainer>
-                  <CheckBoxElement
-                    type="checkbox"
-                    id="checkboxId"
-                    isDarkMode={isDarkMode}
-                    onChange={this.setPasswordStatus}
-                  />
-                  <CheckBoxLabel htmlFor="checkboxId" isDarkMode={isDarkMode}>
-                    Show Password
-                  </CheckBoxLabel>
-                </CheckBoxContainer>
 
                 <LoginButton isDarkMode>Login</LoginButton>
-                {isError && <p className="error-Msg">*{errorMsg}</p>}
+                <LinkText>
+                  Don't have account?
+                  <Link to="/register">Register</Link>
+                </LinkText>
+                {isError && (
+                  <ErrorMsg className="error-Msg">*{errorMsg}</ErrorMsg>
+                )}
               </LoginCardContainer>
             </LoginContainer>
           )

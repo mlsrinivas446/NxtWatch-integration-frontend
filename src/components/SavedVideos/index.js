@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import React, {Component} from 'react'
 import {RiMenuAddFill} from 'react-icons/ri'
 import Header from '../Header'
 import SideBarNavComponent from '../SideBarNavComponent'

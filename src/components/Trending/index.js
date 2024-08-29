@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import React, {Component} from 'react'
 import Cookies from 'js-cookie'
 import {HiFire} from 'react-icons/hi'
 import Loader from 'react-loader-spinner'

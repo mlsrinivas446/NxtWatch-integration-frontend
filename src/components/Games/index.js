@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import React, {Component} from 'react'
 import Cookies from 'js-cookie'
 import {IoLogoGameControllerB} from 'react-icons/io'
 import Loader from 'react-loader-spinner'

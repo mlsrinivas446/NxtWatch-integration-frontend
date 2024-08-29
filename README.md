@@ -25,15 +25,15 @@ In this assignment let's build an **Nxt Watch** by applying the concepts we have
 <details>
 <summary>Login Route</summary>
 
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Login - Light Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-login-light-theme-sm-output.png)
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Login - Dark Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-login-dark-theme-sm-output.png)
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Login Failure - Light Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-login-failure-light-theme-sm-output.png)
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Login Failure - Dark Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-login-failure-dark-theme-sm-output.png)
+- [Extra Small (Size < 576px) and Small (Size >= 576px) - Login - Light Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-Login-light-theme-sm-output.png)
+- [Extra Small (Size < 576px) and Small (Size >= 576px) - Login - Dark Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-Login-dark-theme-sm-output.png)
+- [Extra Small (Size < 576px) and Small (Size >= 576px) - Login Failure - Light Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-Login-failure-light-theme-sm-output.png)
+- [Extra Small (Size < 576px) and Small (Size >= 576px) - Login Failure - Dark Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-Login-failure-dark-theme-sm-output.png)
 
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Login - Light Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-login-light-theme-lg-output.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Login - Dark Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-login-dark-theme-lg-output.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Login Failure - Light Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-login-failure-light-theme-lg-output.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Login Failure - Dark Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-login-failure-dark-theme-lg-output-v0.png)
+- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Login - Light Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-Login-light-theme-lg-output.png)
+- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Login - Dark Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-Login-dark-theme-lg-output.png)
+- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Login Failure - Light Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-Login-failure-light-theme-lg-output.png)
+- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Login Failure - Dark Theme](https://assets.ccbp.in/frontend/content/react-js/nxt-watch-Login-failure-dark-theme-lg-output-v0.png)
 
 </details>
 
@@ -286,9 +286,9 @@ The app must have the following functionalities
 <summary>API Requests & Responses</summary>
 <br/>
 
-**loginApiUrl**
+**LoginApiUrl**
 
-#### API: `https://apis.ccbp.in/login`
+#### API: `https://apis.ccbp.in/Login`
 
 #### Method: `POST`
 
@@ -481,7 +481,7 @@ console.log(formatDistanceToNow(new Date(2021, 8, 20)))
 **The following instructions are required for the tests to pass**
 
 - `Home` route should consist of `/` in the URL path
-- `Login` route should consist of `/login` in the URL path
+- `Login` route should consist of `/Login` in the URL path
 - `Trending` route should consist of `/trending` in the URL path
 - `Gaming` route should consist of `/gaming` in the URL path
 - `SavedVideos` route should consist of `/saved-videos` in the URL path
