@@ -1,4 +1,4 @@
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, withRouter} from 'react-router-dom'
 import React, {Component} from 'react'
 
 import {IoHomeSharp} from 'react-icons/io5'
@@ -8,12 +8,14 @@ import {RiMenuAddFill} from 'react-icons/ri'
 
 import RegisterForm from './components/RegisterForm'
 import LoginForm from './components/LoginForm'
+import Header from './components/Header'
+import SideBarNavComponent from './components/SideBarNavComponent'
 import Home from './components/Home'
 import Trending from './components/Trending'
 import Gaming from './components/Games'
 import SavedVideos from './components/SavedVideos'
-import NotFound from './components/NotFound'
 import VideoItemDetailsRoute from './components/VideoItemDetailsRoute'
+import NotFound from './components/NotFound'
 
 import ReactContext from './context/ReactContext'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -51,6 +53,7 @@ class App extends Component {
     isDarkMode: false,
     menuList: [...menuItemsList],
     savedList: [],
+    token: '',
   }
 
   changeThemeMode = () => {
@@ -68,12 +71,7 @@ class App extends Component {
     }))
   }
 
-  changeThemeMode = () => {
-    this.setState(prevState => ({isDarkMode: !prevState.isDarkMode}))
-  }
-
   onSave = videoItemDetails => {
-    console.log(videoItemDetails)
     this.setState(prevState => {
       const isAlreadySaved = prevState.savedList.some(
         item => item.id === videoItemDetails.id,
@@ -87,8 +85,16 @@ class App extends Component {
     })
   }
 
+  setToken = (token) => {
+    this.setState({token})
+  }
+
   render() {
-    const {isDarkMode, menuList, savedList} = this.state
+    const {isDarkMode, menuList, savedList, token} = this.state
+    const {location} = this.props
+
+    const showHeader =
+      location.pathname !== '/login' && location.pathname !== '/register'
 
     return (
       <ReactContext.Provider
@@ -99,8 +105,12 @@ class App extends Component {
           navMenuStyle: this.navMenuStyle,
           onSave: this.onSave,
           savedList,
+          token,
+          setToken:this.setToken
         }}
       >
+        {showHeader && <Header />}
+        {showHeader && <SideBarNavComponent />}
         <Switch>
           <Route exact path="/register" component={RegisterForm} />
           <Route exact path="/login" component={LoginForm} />
@@ -120,4 +130,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default withRouter(App)

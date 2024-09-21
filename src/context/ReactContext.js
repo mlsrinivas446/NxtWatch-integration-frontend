@@ -14,7 +14,9 @@ const ReactContext = React.createContext({
   trendingVideoList: [],
   gamesVideoList: [],
   onRetryFailure: () => {},
-  onChangeActiveId: () => {},
+  onChangeActiveId: () => { },
+  token: "",
+  setToken: () => {}
 })
 
 export default ReactContext

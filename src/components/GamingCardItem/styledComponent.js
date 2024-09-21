@@ -1,42 +1,56 @@
 import styled from 'styled-components'
 
 export const GameingItem = styled.li`
-  height: 45vh;
-  width: 80vw;
   list-style-type: none;
+  background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
+  margin: 8px;
+  width: 90vw;
+  height: 55vh;
+  border-radius: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 10px darkgray;
+  }
 
   @media screen and (min-width: 576px) {
-    height: 50vh;
-    width: 45vw;
+    width: 40vw;
+    height: 60vh;
+    margin-left: 30px;
   }
   @media screen and (min-width: 768px) {
-    height: 55vh;
-    width: 26vw;
+    width: 34vw;
+    height: 60vh;
+    margin: 10px;
+    margin-left: 30px;
   }
   @media screen and (min-width: 992px) {
+    width: 24vw;
     height: 60vh;
-    width: 20vw;
+    margin-left: 25px;
   }
 `
 
 export const GameingImg = styled.img`
   height: 30vh;
   width: 80vw;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 
   @media screen and (min-width: 576px) {
     height: 35vh;
-    width: 35vw;
+    width: 40vw;
   }
 
   @media screen and (min-width: 768px) {
     height: 40vh;
-    width: 18vw;
+    width: 35vw;
     margin-right: 20px;
   }
 
   @media screen and (min-width: 992px) {
     height: 40vh;
-    width: 16vw;
+    width: 24vw;
   }
 `
 
@@ -44,22 +58,20 @@ export const GameingDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding: 4px;
+  background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
 `
 
-export const GameingTitle = styled.p`
-  font-size: 15px;
+export const GamingTitle = styled.h1`
   color: ${props => (props.isDarkMode ? '#ffffff' : '#1e293b')};
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px;
   @media screen and (min-width: 576px) {
-    font-size: 15px;
-  }
-  @media screen and (min-width: 768px) {
-    font-size: 15px;
-  }
-  @media screen and (min-width: 992px) {
-    font-size: 18px;
+    font-size: 14px;
   }
 `
 
-export const ViewsCount = styled.p`
+export const ChannelName = styled.p`
   color: #94a3b8;
 `

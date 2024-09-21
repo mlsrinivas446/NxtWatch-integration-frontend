@@ -5,8 +5,9 @@ import ReactContext from '../../context/ReactContext'
 import {
   GameingItem,
   GameingImg,
-  GameingTitle,
-  ViewsCount,
+  GameingDetailContainer,
+  GamingTitle,
+  ChannelName,
 } from './styledComponent'
 
 const GamingCardItem = props => (
@@ -15,14 +16,16 @@ const GamingCardItem = props => (
       const {isDarkMode} = value
       const {trendingCardItem} = props
 
-      const {id, thumbnailUrl, title, viewCount} = trendingCardItem
+      const {id, thumbnailUrl, title, name} = trendingCardItem
 
       return (
         <Link to={`/videos/${id}`} className="link">
-          <GameingItem>
+          <GameingItem isDarkMode={isDarkMode}>
             <GameingImg src={thumbnailUrl} alt="video thumbnail" />
-            <GameingTitle isDarkMode={isDarkMode}>{title}</GameingTitle>
-            <ViewsCount>{viewCount} views</ViewsCount>
+            <GameingDetailContainer isDarkMode={isDarkMode}>
+              <GamingTitle isDarkMode={isDarkMode}>{title}</GamingTitle>
+              <ChannelName>{name}</ChannelName>
+            </GameingDetailContainer>
           </GameingItem>
         </Link>
       )

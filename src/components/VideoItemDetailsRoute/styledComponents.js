@@ -1,13 +1,19 @@
 import styled from 'styled-components'
 
 export const VideoItemDetailsContainer = styled.div`
-  background-color: ${props => (props.isDarkMode ? '#0f0f0f' : '#f9f9f9')};
   width: 100vw;
+  height: 90vh;
+  background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+  overflow: scroll;
   box-sizing: border-box;
-  @media screen and (max-width: 576px) {
-    height: 115vh;
+  position: fixed;
+  right: 0;
+  margin-top: 10vh;
+  @media screen and (min-width: 768px) {
+    width: 85vw;
   }
 `
 
@@ -163,6 +169,7 @@ export const TeamLogoImage = styled.img`
   height: 30px;
   width: 30px;
   margin-top: 10px;
+  border-radius: 50%;
 `
 
 export const TeamContentContainer = styled.div`
@@ -176,15 +183,20 @@ export const IbText = styled.p`
   color: ${props => (props.isDarkMode ? '#ffffff' : '#94a3b8')};
 `
 
-export const Subscribers = styled.p`
-  font-size: 13px;
-  color: #475569;
-`
-
 export const Description = styled.p`
   font-size: 13px;
   color: ${props => (props.isDarkMode ? '#ffffff' : '#94a3b8')};
   @media screen and (min-width: 768px) {
     font-size: 16px;
+  }
+`
+export const Dot = styled.p`
+  color: ${props => (props.isDarkMode ? '#ffffff' : '#475569')};
+  font-size: 14px;
+  padding-bottom: 9px;
+  margin: 7px;
+  font-weight: 500;
+  @media screen and (min-width: 576px) {
+    font-size: 15px;
   }
 `

@@ -12,7 +12,7 @@ import {
   IbChannelText,
   ViewsCount,
   PublishedAt,
-  SeperatorDot2,
+  Dot,
 } from './trendingItemStyledComponent'
 
 const TrendingCardItem = props => (
@@ -26,10 +26,18 @@ const TrendingCardItem = props => (
         publishedAt,
         thumbnailUrl,
         title,
-        viewCount,
+        viewCount
       } = trendingCardItem
+      console.log(trendingCardItem)
 
       const distanceYear = formatDistanceToNow(new Date(publishedAt))
+
+      function formatNumberToK(num) {
+        if (num >= 1000) {
+          return (num / 1000).toFixed(1) + 'k'
+        }
+        return num
+      }
 
       return (
         <Link to={`/videos/${id}`} className="link">
@@ -37,11 +45,10 @@ const TrendingCardItem = props => (
             <TrendingImg src={thumbnailUrl} alt={title} />
             <TrendingDetailContainer>
               <TrendingTitle isDarkMode={isDarkMode}>{title}</TrendingTitle>
+              <IbChannelText>{name}</IbChannelText>
               <ViewsYearContainer>
-                <IbChannelText>{name}</IbChannelText>
-                <SeperatorDot2>.</SeperatorDot2>
-                <ViewsCount>{viewCount} views</ViewsCount>
-                <SeperatorDot2>.</SeperatorDot2>
+                <ViewsCount>{formatNumberToK(viewCount)} views</ViewsCount>
+                <Dot className="dot">.</Dot>
                 <PublishedAt>{distanceYear} ago</PublishedAt>
               </ViewsYearContainer>
             </TrendingDetailContainer>

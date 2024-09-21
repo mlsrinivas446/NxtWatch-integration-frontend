@@ -2,11 +2,19 @@ import styled from 'styled-components'
 
 export const SavedContainer = styled.div`
   width: 100vw;
-  min-height: 100vh;
-  background-color: ${props => (props.isDarkMode ? '#0f0f0f' : '#f9f9f9')};
+  height: 90vh;
+  background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+  overflow: scroll;
   box-sizing: border-box;
+  position: fixed;
+  right: 0;
+  margin-top: 10vh;
+  @media screen and (min-width: 768px) {
+    width: 85vw;
+  }
 `
 
 export const SavedCardContainer = styled.div`
@@ -86,14 +94,17 @@ export const SavedHeading = styled.h1`
 `
 
 export const SavedUnorderedListContainer = styled.ul`
-  width: 100vw;
+  width: 90vw;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  padding-left: 0;
-  margin-left: 0;
+  padding: auto;
+  margin: auto;
   flex-wrap: wrap;
+  padding-left: 0;
   @media screen and (min-width: 768px) {
+    flex-direction: column;
     width: 85vw;
   }
 `

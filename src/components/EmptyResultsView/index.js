@@ -9,11 +9,12 @@ import {
   EmptyRetryButton,
 } from './styledComponent'
 
-const EmptyResultsView = () => (
+const EmptyResultsView = (props) => (
   <ReactContext.Consumer>
     {value => {
-      const {isDarkMode} = value
-
+      const { isDarkMode } = value
+      const { onRetryEmptyResults } = props
+  
       return (
         <EmptyContentContainer isDarkMode={isDarkMode}>
           <EmptyImage
@@ -26,7 +27,9 @@ const EmptyResultsView = () => (
           <EmptyDescription isDarkMode={isDarkMode}>
             Try different key words or remove search filter
           </EmptyDescription>
-          <EmptyRetryButton type="type">Retry</EmptyRetryButton>
+          <EmptyRetryButton type="type" onClick={onRetryEmptyResults}>
+            Retry
+          </EmptyRetryButton>
         </EmptyContentContainer>
       )
     }}

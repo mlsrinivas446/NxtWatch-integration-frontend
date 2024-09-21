@@ -8,6 +8,10 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: ${props => (props.isDarkMode ? '#212121' : '#ffffff')};
   visibility: visible;
 `
@@ -22,22 +26,24 @@ export const WebsiteLogo = styled.img`
   }
 `
 
-export const LargeDeviceContainer = styled.div`
-  display: none;
-
-  @media screen and (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-    width: 20vw;
-  }
-`
-
-export const MobileContainer = styled.div`
+export const MenuContainer = styled.div`
   display: flex;
   justify-content: space-between;
-
+  width: 60vw;
+  @media screen and (min-width: 300px) {
+    width: 50vw;
+  }
+  @media screen and (min-width: 478px) {
+    width: 40vw;
+  }
+  @media screen and (min-width: 600px) {
+    width: 30vw;
+  }
   @media screen and (min-width: 768px) {
-    display: none;
+    width: 20vw;
+  }
+  @media screen and (min-width: 992px) {
+    width: 18vw;
   }
 `
 
@@ -73,10 +79,12 @@ export const LogoutButton = styled.button`
   font-size: 15px;
   padding: 5px;
   margin-left: 10px;
+  display: none;
 
   @media screen and (min-width: 768px) {
     font-size: 15px;
     padding: 8px;
+    display: flex;
   }
 `
 
@@ -86,6 +94,9 @@ export const MobileLogoutButton = styled.button`
   color: ${props => (props.isDarkMode ? '#ffffff' : '#0f0f0f')};
   border-radius: 5px;
   margin-right: 10px;
+  @media screen and (min-width:768px){
+    display: none;
+  }
 `
 
 export const PopupLogoutContainer = styled.div`
@@ -133,7 +144,7 @@ export const MobileRoutesContainer = styled.ul`
     width: 35vw;
   }
   @media screen and (min-width: 768px) {
-    display: none;
+
   }
 `
 
@@ -145,3 +156,87 @@ export const CloseButton = styled.button`
   outline: none;
   color: ${props => (props.isDarkMode ? '#ffffff' : '#212121')};
 `
+
+export const PopupUserDetailsContainer = styled.div`
+  background-color: ${props => (props.isDarkMode ? '#2c2c2c' : '#f7f8fc')};
+  color: ${props => (props.isDarkMode ? '#ffffff' : '#212121')};
+  height: auto;
+  width: 60vw;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  margin: 0 auto;
+
+  @media (min-width: 576px) {
+    width: 40vw;
+  }
+
+  @media (min-width: 768px) {
+    width: 40vw;
+  }
+
+  @media (min-width: 992px) {
+    width: 30vw;
+  }
+`;
+
+export const ProfileDetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid ${props => (props.isDarkMode ? '#3d3d3d' : '#e0e0e0')};
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
+export const ProfileLabelInfo = styled.p`
+  font-size: 14px;
+  color: ${props => (props.isDarkMode ? '#c7c7c7' : '#666')};
+  margin: 0;
+  padding-left: 10px;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+`;
+
+export const ProfileIcon = styled.div`
+  font-size: 40px;
+  color: ${props => (props.isDarkMode ? '#ffffff' : '#212121')};
+  margin-bottom: 10px;
+  align-self: center;
+
+  @media (min-width: 768px) {
+    font-size: 50px;
+    margin-bottom: 15px;
+  }
+`;
+
+export const PopupCloseButton = styled.button`
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: ${props => (props.isDarkMode ? '#ffffff' : '#212121')};
+  align-self: flex-end;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${props => (props.isDarkMode ? '#e0e0e0' : '#333')};
+    transform: scale(1.1);
+  }
+`;
+

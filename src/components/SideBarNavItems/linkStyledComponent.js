@@ -17,7 +17,7 @@ export const FilterHomeContainer = styled.li`
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 15vw;
+    width: 18vw;
     background-color: ${props => (props.isActive ? '#f1f5f9' : null)};
     background-color: ${props =>
       props.isDarkMode && props.isActive ? ' #181818' : null};

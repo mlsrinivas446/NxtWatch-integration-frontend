@@ -1,22 +1,19 @@
+import axios from 'axios'
 import React, {Component} from 'react'
-import Cookies from 'js-cookie'
 import {IoLogoGameControllerB} from 'react-icons/io'
 import Loader from 'react-loader-spinner'
-import ApiFailureView from '../ApiFailureView'
-import Header from '../Header'
-import SideBarNavComponent from '../SideBarNavComponent'
-import GamingCardItem from '../GamingCardItem'
 import ReactContext from '../../context/ReactContext'
+import ApiFailureView from '../ApiFailureView'
+import GamingCardItem from '../GamingCardItem'
 
 import {
   GamesContainer,
-  GamesCardContainer,
-  GamesIconContainer,
   GamesContentContainer,
-  GamesIcon,
-  ImageIcon,
   GamesHeading,
+  GamesIcon,
+  GamesIconContainer,
   GamesUnorderListContainer,
+  ImageIcon,
 } from './gamesStyledComponent'
 
 const apiConstants = {
@@ -27,42 +24,44 @@ const apiConstants = {
 }
 
 class Gaming extends Component {
-  state = {trendingList: [], apiStatus: apiConstants.initial}
+  state = {
+    trendingList: [],
+    apiStatus: apiConstants.initial,
+  }
 
   componentDidMount() {
     this.getTrendingList()
   }
 
   getTrendingList = async () => {
-    const token = Cookies.get('jwt_token')
     this.setState({apiStatus: apiConstants.progress})
 
-    const url = 'https://apis.ccbp.in/videos/gaming'
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    const url =
+      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLiZN0Fd_jMqemqNeeFfV6Tc8OZ3sXAgkZ&key=AIzaSyB2kPZq_q_ju7SBl2dpp61zzxpjhjROkX0&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
 
-    const response = await fetch(url, options)
+    try {
+      const response = await axios.get(url)
 
-    if (response.status === 200) {
-      const trendingData = await response.json()
+      if (response.status === 200) {
+        const formatTrendingData = response.data.items.map(each => ({
+          name: each?.snippet?.channelTitle,
+          profileImageUrl: each?.snippet?.thumbnails?.high?.url,
+          id: each?.snippet?.resourceId.videoId,
+          publishedAt: each?.snippet?.publishedAt,
+          thumbnailUrl: each?.snippet?.thumbnails?.high?.url,
+          title: each?.snippet?.title,
+          isSaved: false,
+        }))
 
-      const formatTrendingData = trendingData.videos.map(each => ({
-        id: each.id,
-        thumbnailUrl: each.thumbnail_url,
-        title: each.title,
-        viewCount: each.view_count,
-        isSaved: false,
-      }))
-
-      this.setState({
-        trendingList: formatTrendingData,
-        apiStatus: apiConstants.success,
-      })
-    } else {
+        this.setState({
+          trendingList: formatTrendingData,
+          apiStatus: apiConstants.success,
+        })
+      } else {
+        this.setState({apiStatus: apiConstants.failure})
+      }
+    } catch (error) {
+      console.error('Error fetching videos:', error)
       this.setState({apiStatus: apiConstants.failure})
     }
   }
@@ -78,7 +77,7 @@ class Gaming extends Component {
           const {isDarkMode} = value
 
           const renderLoadingView = () => (
-            <div className="loader-container" data-testid="loader">
+            <div className="loader-container">
               <Loader
                 type="ThreeDots"
                 color={isDarkMode ? '#ffffff' : '#0b69ff'}
@@ -119,24 +118,20 @@ class Gaming extends Component {
           }
 
           return (
-            <GamesContainer isDarkMode={isDarkMode} data-testid="gaming">
-              <Header />
-              <GamesCardContainer>
-                <SideBarNavComponent />
-                <GamesContentContainer isDarkMode={isDarkMode}>
-                  <GamesIconContainer isDarkMode={isDarkMode}>
-                    <GamesIcon isDarkMode={isDarkMode}>
-                      <ImageIcon isDarkMode={isDarkMode}>
-                        <IoLogoGameControllerB />
-                      </ImageIcon>
-                    </GamesIcon>
-                    <GamesHeading isDarkMode={isDarkMode}>Gaming</GamesHeading>
-                  </GamesIconContainer>
-                  <GamesUnorderListContainer>
-                    {renderApiViews()}
-                  </GamesUnorderListContainer>
-                </GamesContentContainer>
-              </GamesCardContainer>
+            <GamesContainer isDarkMode={isDarkMode}>
+              <GamesContentContainer isDarkMode={isDarkMode}>
+                <GamesIconContainer isDarkMode={isDarkMode}>
+                  <GamesIcon isDarkMode={isDarkMode}>
+                    <ImageIcon isDarkMode={isDarkMode}>
+                      <IoLogoGameControllerB />
+                    </ImageIcon>
+                  </GamesIcon>
+                  <GamesHeading isDarkMode={isDarkMode}>Gaming</GamesHeading>
+                </GamesIconContainer>
+                <GamesUnorderListContainer>
+                  {renderApiViews()}
+                </GamesUnorderListContainer>
+              </GamesContentContainer>
             </GamesContainer>
           )
         }}

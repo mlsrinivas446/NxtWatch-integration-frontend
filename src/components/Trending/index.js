@@ -1,24 +1,16 @@
+import axios from 'axios'
 import React, {Component} from 'react'
-import Cookies from 'js-cookie'
 import {HiFire} from 'react-icons/hi'
 import Loader from 'react-loader-spinner'
-
-import Header from '../Header'
-import SideBarNavComponent from '../SideBarNavComponent'
 import TrendingCardItem from '../TrendingCardItem'
-
 import ApiFailureView from '../ApiFailureView'
-
 import ReactContext from '../../context/ReactContext'
-
 import {
-  TrendingContainer,
-  TrendingCardContainer,
-  TrendingIconContainer,
-  TrendingContentContainer,
-  TrendingIcon,
-  ImageIcom,
+  ImageIcon,
   TrandingHeading,
+  TrendingContainer,
+  TrendingIcon,
+  TrendingIconContainer,
   TrendingUnorderListContainer,
 } from './trendingStyledComponent'
 
@@ -30,48 +22,45 @@ const apiConstants = {
 }
 
 class Trending extends Component {
-  state = {trendingList: [], apiStatus: apiConstants.initial}
+  state = {
+    trendingList: [],
+    apiStatus: apiConstants.initial,
+  }
 
   componentDidMount() {
     this.getTrendingList()
   }
 
   getTrendingList = async () => {
-    const token = Cookies.get('jwt_token')
     this.setState({apiStatus: apiConstants.progress})
 
-    const url = 'https://apis.ccbp.in/videos/trending'
+    const url =
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${process.env.REACT_APP_TRENDING_VIDEOS_ID}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
 
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    try {
+      const response = await axios.get(url)
 
-    const response = await fetch(url, options)
+      if (response.status === 200) {
+        const formatTrendingData = response.data.items.map(each => ({
+          name: each?.snippet?.channelTitle,
+          profileImageUrl: each?.snippet?.thumbnails?.high?.url,
+          id: each?.id,
+          publishedAt: each?.snippet?.publishedAt,
+          thumbnailUrl: each?.snippet?.thumbnails?.high?.url,
+          viewCount: each?.statistics?.viewCount,
+          title: each?.snippet?.title,
+          isSaved: false,
+        }))
 
-    if (response.status === 200) {
-      const trendingData = await response.json()
-
-      const formatTrendingData = trendingData.videos.map(each => ({
-        name: each.channel.name,
-        channelProfileImageUrl: each.channel.profile_image_url,
-        id: each.id,
-        publishedAt: each.published_at,
-        thumbnailUrl: each.thumbnail_url,
-        title: each.title,
-        viewCount: each.view_count,
-        isSaved: false,
-      }))
-
-      this.setState({
-        trendingList: formatTrendingData,
-        apiStatus: apiConstants.success,
-      })
-    } else if (response.status === 401) {
-      this.setState({apiStatus: apiConstants.failure})
-    } else {
+        this.setState({
+          trendingList: formatTrendingData,
+          apiStatus: apiConstants.success,
+        })
+      } else {
+        this.setState({apiStatus: apiConstants.failure})
+      }
+    } catch (error) {
+      console.error('Error fetching videos:', error)
       this.setState({apiStatus: apiConstants.failure})
     }
   }
@@ -83,11 +72,9 @@ class Trending extends Component {
   render() {
     return (
       <ReactContext.Consumer>
-        {value => {
-          const {isDarkMode} = value
-
+        {({isDarkMode}) => {
           const renderLoadingView = () => (
-            <div className="loader-container" data-testid="loader">
+            <div className="loader-container">
               <Loader
                 type="ThreeDots"
                 color={isDarkMode ? '#ffffff' : '#0b69ff'}
@@ -129,25 +116,19 @@ class Trending extends Component {
 
           return (
             <TrendingContainer isDarkMode={isDarkMode} data-testid="trending">
-              <Header />
-              <TrendingCardContainer>
-                <SideBarNavComponent />
-                <TrendingContentContainer isDarkMode={isDarkMode}>
-                  <TrendingIconContainer isDarkMode={isDarkMode}>
-                    <TrendingIcon isDarkMode={isDarkMode}>
-                      <ImageIcom isDarkMode={isDarkMode}>
-                        <HiFire />
-                      </ImageIcom>
-                    </TrendingIcon>
-                    <TrandingHeading isDarkMode={isDarkMode}>
-                      Trending
-                    </TrandingHeading>
-                  </TrendingIconContainer>
-                  <TrendingUnorderListContainer>
-                    {renderApiViews()}
-                  </TrendingUnorderListContainer>
-                </TrendingContentContainer>
-              </TrendingCardContainer>
+              <TrendingIconContainer isDarkMode={isDarkMode}>
+                <TrendingIcon isDarkMode={isDarkMode}>
+                  <ImageIcon isDarkMode={isDarkMode}>
+                    <HiFire />
+                  </ImageIcon>
+                </TrendingIcon>
+                <TrandingHeading isDarkMode={isDarkMode}>
+                  Trending
+                </TrandingHeading>
+              </TrendingIconContainer>
+              <TrendingUnorderListContainer>
+                {renderApiViews()}
+              </TrendingUnorderListContainer>
             </TrendingContainer>
           )
         }}

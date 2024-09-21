@@ -2,10 +2,19 @@ import styled from 'styled-components'
 
 export const GamesContainer = styled.div`
   width: 100vw;
-  background-color: ${props => (props.isDarkMode ? '#0f0f0f' : '#f9f9f9')};
+  height: 90vh;
+  background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+  overflow: scroll;
   box-sizing: border-box;
+  position: fixed;
+  right: 0;
+  margin-top: 10vh;
+  @media screen and (min-width: 768px) {
+    width: 85vw;
+  }
 `
 
 export const GamesCardContainer = styled.div`

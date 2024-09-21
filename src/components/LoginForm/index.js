@@ -37,8 +37,7 @@ class LoginForm extends Component {
   }
 
   onSubmitSuccess = jwtToken => {
-    Cookies.set('jwt_token', jwtToken, {expires: 30})
-
+    Cookies.set('jwt_token', jwtToken, {expires: 1})
     const {history} = this.props
     history.replace('/')
   }
@@ -57,9 +56,7 @@ class LoginForm extends Component {
       console.log(error)
       this.setState({
         isError: true,
-        errorMsg: error.response
-          ? error.response.data
-          : 'Something went wrong',
+        errorMsg: error.response ? error.response.data : 'Something went wrong',
       })
     }
   }
@@ -89,7 +86,7 @@ class LoginForm extends Component {
               <LoginCardContainer
                 isDarkMode={isDarkMode}
                 onSubmit={this.submitForm}
-                autoComplete="off"
+                autoComplete="on"
               >
                 {lodoImgUrl}
                 <NameContainer>

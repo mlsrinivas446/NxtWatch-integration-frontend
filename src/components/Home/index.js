@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
-import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
+import axios from 'axios'
 
 import {IoMdClose, IoMdSearch} from 'react-icons/io'
-import Header from '../Header'
 import HomeVideoItem from '../HomeVideoItem'
-import SideBarNavComponent from '../SideBarNavComponent'
 import ReactContext from '../../context/ReactContext'
 
 import ApiFailureView from '../ApiFailureView'
@@ -15,7 +13,6 @@ import './index.css'
 
 import {
   HomeContainer,
-  HomeBottomContainer,
   HomeCardContentContainer,
   UnorderListItemsContainer,
   PremimunContainer,
@@ -34,14 +31,13 @@ const apiConstants = {
   failure: 'FAILURE',
   progress: 'IN_PROGRESS',
 }
-const storedState = JSON.parse(localStorage.getItem('homeState'))
 
 class Home extends Component {
   state = {
     searchInput: '',
     banner: true,
     search: '',
-    videoList: storedState?.videoList || [],
+    videoList: [],
     apiStatus: apiConstants.initial,
   }
 
@@ -51,38 +47,29 @@ class Home extends Component {
 
   componentDidUpdate(prevState) {
     if (prevState !== this.state) {
-      localStorage.setItem('homeState', JSON.stringify(this.state))
     }
   }
 
   getVideosListApi = async () => {
     this.setState({apiStatus: apiConstants.progress})
 
-    const {search} = this.state
-    const token = Cookies.get('jwt_token')
-    const url = `https://apis.ccbp.in/videos/all?search=${search}`
-
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${process.env.REACT_APP_HOME_VIDEOS_ID}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
 
     try {
-      const response = await fetch(url, options)
+      const response = await axios.get(url)
+
       if (response.status === 200) {
-        const data = await response.json()
-        const formatVideosList = data.videos.map(each => ({
-          name: each.channel.name,
-          profileImageUrl: each.channel.profile_image_url,
-          id: each.id,
-          publishedAt: each.published_at,
-          thumbnailUrl: each.thumbnail_url,
-          title: each.title,
-          viewCount: each.view_count,
+        const formatVideosList = response.data.items.map(each => ({
+          name: each?.snippet?.channelTitle,
+          profileImageUrl: each?.snippet?.thumbnails?.high?.url,
+          id: each?.id,
+          publishedAt: each?.snippet?.publishedAt,
+          thumbnailUrl: each?.snippet?.thumbnails?.high?.url,
+          viewCount: each?.statistics?.viewCount,
+          title: each?.snippet?.title,
           isSaved: false,
         }))
+
         this.setState({
           videoList: formatVideosList,
           apiStatus: apiConstants.success,
@@ -108,7 +95,17 @@ class Home extends Component {
 
   onSearchFilter = () => {
     const {searchInput} = this.state
-    this.setState({search: searchInput}, this.getVideosListApi)
+    const searchLowerCase = searchInput.toLowerCase()
+
+    this.setState(prevState => ({
+      videoList: prevState.videoList.filter(each =>
+        each.title.toLowerCase().includes(searchLowerCase),
+      ),
+    }))
+  }
+
+  onRetryEmptyResults = () => {
+    this.setState({searchInput: ""}, this.getVideosListApi)
   }
 
   bannerContainer = () => {
@@ -194,7 +191,9 @@ class Home extends Component {
                   </SearchContainer>
 
                   {videoList.length === 0 ? (
-                    <EmptyResultsView />
+                    <EmptyResultsView
+                      onRetryEmptyResults={this.onRetryEmptyResults}
+                    />
                   ) : (
                     this.getVideoCardList()
                   )}
@@ -219,14 +218,10 @@ class Home extends Component {
           }
 
           return (
-            <HomeContainer isDarkMode={isDarkMode} data-testid="home">
-              <Header />
-              <HomeBottomContainer isDarkMode={isDarkMode}>
-                <SideBarNavComponent />
-                <HomeCardContentContainer>
-                  {renderApiViews()}
-                </HomeCardContentContainer>
-              </HomeBottomContainer>
+            <HomeContainer isDarkMode={isDarkMode}>
+              <HomeCardContentContainer>
+                {renderApiViews()}
+              </HomeCardContentContainer>
             </HomeContainer>
           )
         }}

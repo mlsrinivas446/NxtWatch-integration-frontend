@@ -1,16 +1,15 @@
 import React, {Component} from 'react'
 import ReactPlayer from 'react-player'
-import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
+import moment from 'moment'
+
+import axios from 'axios'
 import {BiLike, BiDislike} from 'react-icons/bi'
 import {RiMenuAddFill} from 'react-icons/ri'
 import ApiFailureView from '../ApiFailureView'
 import ReactContext from '../../context/ReactContext'
-import Header from '../Header'
-import SideBarNavComponent from '../SideBarNavComponent'
 import {
   VideoItemDetailsContainer,
-  VideoItemCardDetailsContainer,
   VideoItemDetailedCardContainer,
   VideoItemDetailDescription,
   ThumbnillViewsContainer,
@@ -28,10 +27,10 @@ import {
   TeamLogoImage,
   TeamContentContainer,
   IbText,
-  Subscribers,
   Description,
   VideoTitle,
   VideoItemContentContainer,
+  Dot,
 } from './styledComponents'
 
 import './index.css'
@@ -60,44 +59,42 @@ class VideoItemDetailsRoute extends Component {
 
     this.setState({apiStatus: apiConstants.success})
 
-    const jwtToken = Cookies.get('jwt_token')
+    const url = `https://www.googleapis.com/youtube/v3/videos?id=${id}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}&part=statistics,snippet,contentDetails,status`
+    
+    try {
+      const response = await axios.get(url)
 
-    const url = `https://apis.ccbp.in/videos/${id}`
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    }
+      if (response.status === 200) {
+        const formatVideoDetails = {
+          name: response.data.items[0].snippet.channelTitle,
+          profileImageUrl: `https://www.youtube.com/watch?v=${response.data.items[0].id}`,
+          description: response.data.items[0].snippet.description,
+          id: response.data.items[0].id,
+          publishedAt: response.data.items[0].snippet.publishedAt,
+          thumbnailUrl: response.data.items[0].snippet.thumbnails.high.url,
+          title: response.data.items[0].snippet.title,
+          videoUrl: `https://www.youtube.com/watch?v=${response.data.items[0].id}`,
+          viewCount: response.data.items[0].statistics.viewCount,
+          tags: response.data.items[0].snippet.tags || [],
+          channelTitle: response.data.items[0].snippet.channelTitle,
+          /*isSaved: data.isSaved !== undefined ? data.isSaved : false, 
+          isLike: data.isLike !== undefined ? data.isLike : false,
+          isDisLike: data.isDisLike !== undefined ? data.isDisLike : false,*/
+        }
 
-    const response = await fetch(url, options)
-    const data = await response.json()
-
-    if (response.status === 200) {
-      const formatVideoDetails = {
-        name: data.video_details.channel.name,
-        profileImageUrl: data.video_details.channel.profile_image_url,
-        subscriberCount: data.video_details.channel.subscriber_count,
-        description: data.video_details.description,
-        id: data.video_details.id,
-        publishedAt: data.video_details.published_at,
-        thumbnailUrl: data.video_details.thumbnail_url,
-        title: data.video_details.title,
-        videoUrl: data.video_details.video_url,
-        viewCount: data.video_details.view_count,
-        isSaved: data.isSaved !== undefined ? data.isSaved : false,
-        isLike: data.isLike !== undefined ? data.isLike : false,
-        isDisLike: data.isDisLike !== undefined ? data.isDisLike : false,
+        this.setState({
+          videoItemDetails: formatVideoDetails,
+          apiStatus: apiConstants.success,
+        })
+      } else if (response.status === 401) {
+        this.setState({apiStatus: apiConstants.failure})
+      } else {
+        this.setState({apiStatus: apiConstants.failure})
       }
-      this.setState({
-        videoItemDetails: formatVideoDetails,
-        apiStatus: apiConstants.success,
-      })
-    } else if (response.status === 401) {
-      this.setState({apiStatus: apiConstants.failure})
-    } else {
-      this.setState({apiStatus: apiConstants.failure})
     }
+    catch (err) { this.setState({apiStatus: apiConstants.failure})}
+
+    
   }
 
   onSaveChange = onSaveCallback => {
@@ -124,8 +121,6 @@ class VideoItemDetailsRoute extends Component {
           const {videoItemDetails} = this.state
           const {
             name,
-            profileImageUrl,
-            subscriberCount,
             description,
             id,
             publishedAt,
@@ -135,9 +130,10 @@ class VideoItemDetailsRoute extends Component {
             isSaved,
             isLike,
             isDisLike,
+            thumbnailUrl
           } = videoItemDetails
 
-          const {isDarkMode, onSave} = value
+          const { isDarkMode, onSave } = value
 
           const onLikeFun = () => {
             const updatedIsLike = !videoItemDetails.isLike
@@ -190,67 +186,80 @@ class VideoItemDetailsRoute extends Component {
             <ApiFailureView onApiRetry={this.onApiRetry} />
           )
 
-          const renderSuccessView = () => (
-            <VideoItemDetailedCardContainer key={id}>
-              <div className="player-wrapper">
-                <ReactPlayer
-                  className="react-player"
-                  url={videoUrl}
-                  width="100%"
-                  height="100%"
-                />
-              </div>
-              <VideoItemDetailDescription isDarkMode={isDarkMode}>
-                <VideoTitle isDarkMode={isDarkMode}>{title}</VideoTitle>
-                <ReviesLikesContainer>
-                  <ThumbnillViewsContainer>
-                    <ViewsCount isDarkMode={isDarkMode}>
-                      {viewCount} views
-                    </ViewsCount>
-                    <p className="dot">.</p>
-                    <ViewsCount>{publishedAt}</ViewsCount>
-                  </ThumbnillViewsContainer>
-                  <LikesDisLikesSaveContainer>
-                    <LikeButton type="button" onClick={onLikeFun} like={isLike}>
-                      <BiLike />
-                      <LikeText like={isLike}>Like</LikeText>
-                    </LikeButton>
-                    <DislikeButton
-                      type="button"
-                      onClick={onDislikeFun}
-                      disLike={isDisLike}
-                    >
-                      <BiDislike />
-                      <DislikeText disLike={isDisLike}>Dislike</DislikeText>
-                    </DislikeButton>
-                    <SaveButton
-                      type="button"
-                      onClick={onSaveFun}
-                      isSaved={isSaved}
-                    >
-                      <RiMenuAddFill />
-                      <SaveText isSaved={isSaved}>
-                        {isSaved ? 'Saved' : 'Save'}
-                      </SaveText>
-                    </SaveButton>
-                  </LikesDisLikesSaveContainer>
-                </ReviesLikesContainer>
-                <HorizontalLine />
-                <TeamIbContainer>
-                  <TeamLogoImage src={profileImageUrl} alt="channel logo" />
-                  <TeamContentContainer>
-                    <IbText isDarkMode={isDarkMode}>{name}</IbText>
-                    <Subscribers isDarkMode={isDarkMode}>
-                      {subscriberCount} subscribers
-                    </Subscribers>
-                    <Description isDarkMode={isDarkMode}>
-                      {description}
-                    </Description>
-                  </TeamContentContainer>
-                </TeamIbContainer>
-              </VideoItemDetailDescription>
-            </VideoItemDetailedCardContainer>
-          )
+          const renderSuccessView = () => {
+            const someDate = moment(publishedAt)
+            const formatedDate = someDate.fromNow()
+
+            function formatNumberToK(num) {
+              if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'k'
+              }
+              return num
+            }
+
+            return (
+              <VideoItemDetailedCardContainer key={id}>
+                <div className="player-wrapper">
+                  <ReactPlayer
+                    className="react-player"
+                    url={videoUrl}
+                    width="100%"
+                    height="100%"
+                  />
+                </div>
+                <VideoItemDetailDescription isDarkMode={isDarkMode}>
+                  <VideoTitle isDarkMode={isDarkMode}>{title}</VideoTitle>
+                  <ReviesLikesContainer>
+                    <ThumbnillViewsContainer>
+                      <ViewsCount isDarkMode={isDarkMode}>
+                        {formatNumberToK(viewCount)} views
+                      </ViewsCount>
+                      <Dot className="dot">.</Dot>
+                      <ViewsCount>{formatedDate} ago</ViewsCount>
+                    </ThumbnillViewsContainer>
+                    <LikesDisLikesSaveContainer>
+                      <LikeButton
+                        type="button"
+                        onClick={onLikeFun}
+                        like={isLike}
+                      >
+                        <BiLike />
+                        <LikeText like={isLike}>Like</LikeText>
+                      </LikeButton>
+                      <DislikeButton
+                        type="button"
+                        onClick={onDislikeFun}
+                        disLike={isDisLike}
+                      >
+                        <BiDislike />
+                        <DislikeText disLike={isDisLike}>Dislike</DislikeText>
+                      </DislikeButton>
+                      <SaveButton
+                        type="button"
+                        onClick={onSaveFun}
+                        isSaved={isSaved}
+                      >
+                        <RiMenuAddFill />
+                        <SaveText isSaved={isSaved}>
+                          {isSaved ? 'Saved' : 'Save'}
+                        </SaveText>
+                      </SaveButton>
+                    </LikesDisLikesSaveContainer>
+                  </ReviesLikesContainer>
+                  <HorizontalLine />
+                  <TeamIbContainer>
+                    <TeamLogoImage src={thumbnailUrl} alt="channel logo" />
+                    <TeamContentContainer>
+                      <IbText isDarkMode={isDarkMode}>{name}</IbText>
+                      <Description isDarkMode={isDarkMode}>
+                        {description}
+                      </Description>
+                    </TeamContentContainer>
+                  </TeamIbContainer>
+                </VideoItemDetailDescription>
+              </VideoItemDetailedCardContainer>
+            )
+          }
 
           const renderApiViews = () => {
             const {apiStatus} = this.state
@@ -269,13 +278,9 @@ class VideoItemDetailsRoute extends Component {
 
           return (
             <VideoItemDetailsContainer isDarkMode={isDarkMode}>
-              <Header />
-              <VideoItemCardDetailsContainer>
-                <SideBarNavComponent />
-                <VideoItemContentContainer>
+              <VideoItemContentContainer>
                   {renderApiViews()}
-                </VideoItemContentContainer>
-              </VideoItemCardDetailsContainer>
+              </VideoItemContentContainer>
             </VideoItemDetailsContainer>
           )
         }}

@@ -2,10 +2,19 @@ import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
   width: 100vw;
+  height: 90vh;
   background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+  overflow: scroll;
   box-sizing: border-box;
+  position: fixed;
+  right: 0;
+  margin-top: 10vh;
+  @media screen and (min-width: 768px) {
+    width: 85vw;
+  }
 `
 
 export const HomeCardContentContainer = styled.aside`
@@ -42,25 +51,14 @@ export const HomeCardContainer = styled.div`
 export const UnorderListItemsContainer = styled.ul`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   width: 95vw;
-  padding-left: 0;
-  margin-left: 0;
+  padding: 0px;
   @media screen and (min-width: 768px) {
     width: 85vw;
     padding: 10px;
-  }
-`
-
-export const UnorderListContainer = styled.ul`
-  display: flex;
-  align-items: center;
-  width: 40vw;
-
-  @media screen and (max-width: 768px) {
-    width: 85vw;
   }
 `
 

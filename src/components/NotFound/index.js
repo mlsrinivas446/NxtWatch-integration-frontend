@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../Header'
 import SideBarNavComponent from '../SideBarNavComponent'
 
 import ReactContext from '../../context/ReactContext'
@@ -24,7 +23,6 @@ const NotFound = () => (
 
       return (
         <TrendingContainer isDarkMode={isDarkMode}>
-          <Header />
           <TrendingCardContainer>
             <SideBarNavComponent />
             <TrendingContentContainer isDarkMode={isDarkMode}>

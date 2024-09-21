@@ -2,10 +2,19 @@ import styled from 'styled-components'
 
 export const TrendingContainer = styled.div`
   width: 100vw;
-  background-color: ${props => (props.isDarkMode ? '#0f0f0f ' : '#f9f9f9')};
+  height: 90vh;
+  background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
   display: flex;
   flex-direction: column;
+  margin: auto;
+  overflow: scroll;
   box-sizing: border-box;
+  position: fixed;
+  right: 0;
+  margin-top: 10vh;
+  @media screen and (min-width: 768px) {
+    width: 85vw;
+  }
 `
 
 export const TrendingCardContainer = styled.div`
@@ -62,7 +71,7 @@ export const TrendingIcon = styled.div`
   }
 `
 
-export const ImageIcom = styled.p`
+export const ImageIcon = styled.p`
   font-size: 23px;
   color: #ff0000;
 
@@ -86,12 +95,14 @@ export const TrandingHeading = styled.h1`
 export const TrendingUnorderListContainer = styled.ul`
   width: 100vw;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   padding-left: 0;
   margin-left: 0;
   flex-wrap: wrap;
   @media screen and (min-width: 768px) {
+    flex-direction: column;
     width: 85vw;
   }
 `

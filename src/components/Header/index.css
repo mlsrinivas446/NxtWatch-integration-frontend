@@ -8,6 +8,10 @@
 .theme-dark-icons {
   font-size: 30px;
 }
+.popup-content{
+  position: "bottom left";
+}
+
 .mobile-logout-button {
   border: none;
   font-size: 30px;
@@ -19,7 +23,17 @@
   justify-content: space-between;
   align-items: center;
 }
+.profile-icon{
+  height: 50px;
+  width: 50px;
+  align-self: center;
+}
 @media screen and (min-width: 768px) {
+  .profile-icon{
+  height: 80px;
+  width: 80px;
+  align-self: center;
+}
   .popup-button-container {
     width: 16vw;
     display: flex;

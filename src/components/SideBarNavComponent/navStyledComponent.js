@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 
 export const HomeMenuContainer = styled.div`
-  width: 15vw;
+  width: 18vw;
   height: 90vh;
   padding: 10px;
   display: none;
   position: fixed;
+  bottom: 0;
   left: 0;
   @media screen and (min-width: 768px) {
     display: flex;

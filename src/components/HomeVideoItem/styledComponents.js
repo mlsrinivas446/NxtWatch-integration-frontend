@@ -6,37 +6,45 @@ export const ListItemContainer = styled.li`
   margin: 8px;
   width: 90vw;
   height: 50vh;
+  border-radius: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 10px darkgray;
+  }
 
   @media screen and (min-width: 576px) {
     width: 40vw;
     height: 60vh;
+    margin-left: 30px;
   }
   @media screen and (min-width: 768px) {
-    width: 25vw;
-    height: 60vh;
-  }
-  @media screen and (min-width: 992px) {
-    width: 18vw;
+    width: 35vw;
     height: 60vh;
     margin: 10px;
+    margin-left: 30px;
+  }
+  @media screen and (min-width: 992px) {
+    width: 24vw;
+    height: 55vh;
+    margin-left: 25px;
   }
 `
 
 export const ThumbnillImage = styled.img`
-  width: 90vw;
+  width: 100%;
   height: 30vh;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  object-fit: cover;
 
   @media screen and (min-width: 576px) {
-    width: 40vw;
     height: 25vh;
   }
   @media screen and (min-width: 768px) {
-    width: 25vw;
     height: 28vh;
   }
-
   @media screen and (min-width: 992px) {
-    width: 18vw;
     height: 25vh;
   }
 `
@@ -44,119 +52,68 @@ export const ThumbnillImage = styled.img`
 export const ThumbnillContentContainer = styled.div`
   display: flex;
   justify-content: flex-start;
+  padding: 8px;
 `
 
-export const ThumbnillTitleBatchViewCotainer = styled.div``
+export const ThumbnillTitleBatchViewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+`
 
 export const ThumbnillProfileImage = styled.img`
   height: 30px;
   width: 30px;
-  margin-right: 7px;
-  margin-top: 10px;
+  margin-right: 8px;
+  margin-top: 8px;
+  border-radius: 50%;
 `
 
-export const ThumbnillTitle = styled.p`
+export const ThumbnillTitle = styled.h1`
   color: ${props => (props.isDarkMode ? '#ffffff' : '#1e293b')};
-
-  @media screen and (max-width: 575px) {
-    font-size: 15px;
-  }
-
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px;
   @media screen and (min-width: 576px) {
-    font-size: 14px;
-  }
-
-  @media screen and (min-width: 992px) {
-    font-size: 13px;
+    font-size: 16px;
   }
 `
 
 export const ThumbnillBatchName = styled.p`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#1e293b')};
-  font-size: 15px;
+  color: ${props => (props.isDarkMode ? '#ffffff' : '#475569')};
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0px;
+  padding-top: 3px;
+  color: #94a3b8;
 `
 
 export const ThumbnillViewsContainer = styled.div`
   display: flex;
   align-items: center;
+  margin: 0px;
+  padding: 0px;
+  color: #94a3b8;
 `
 
 export const ViewsCount = styled.p`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#475569')};
-
-  @media screen and (max-width: 575px) {
-    font-size: 15px;
-  }
-
+  color: #94a3b8;
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px;
   @media screen and (min-width: 576px) {
-    font-size: 13px;
-  }
-
-  @media screen and (min-width: 992px) {
-    font-size: 13px;
-  }
-`
-
-export const TeamIBContainer = styled.div`
-  display: flex;
-  align-items: center;
-`
-
-export const TeamLogoImage = styled.img`
-  @media screen and (max-width: 575px) {
-    height: 30px;
-    width: 30px;
-  }
-  @media screen and (min-width: 576px) {
-    height: 30px;
-    width: 30px;
-  }
-  @media screen and (min-width: 992px) {
-    height: 30px;
-    width: 30px;
-  }
-`
-
-export const TeamContentContainer = styled.div``
-
-export const IBText = styled.p`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#1e293b')};
-
-  @media screen and (max-width: 575px) {
-    font-size: 15px;
-  }
-  @media screen and (min-width: 576px) {
-    font-size: 15px;
-  }
-  @media screen and (min-width: 992px) {
     font-size: 15px;
   }
 `
 
-export const Subscribers = styled.p`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#475569')};
-
-  @media screen and (max-width: 575px) {
-    font-size: 13px;
-  }
+export const Dot = styled.p`
+  color: #94a3b8;
+  font-size: 14px;
+  padding-bottom: 9px;
+  margin: 7px;
+  font-weight: 500;
   @media screen and (min-width: 576px) {
-    font-size: 15px;
-  }
-  @media screen and (min-width: 992px) {
-    font-size: 15px;
-  }
-`
-
-export const Description = styled.p`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#64748b')};
-
-  @media screen and (max-width: 575px) {
-    font-size: 15px;
-  }
-  @media screen and (min-width: 576px) {
-    font-size: 15px;
-  }
-  @media screen and (min-width: 992px) {
     font-size: 15px;
   }
 `
