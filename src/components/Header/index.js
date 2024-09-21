@@ -40,7 +40,7 @@ const Header = props => {
 
   useEffect(() => {
     const fetchProfileData = async () => {
-      const url = 'http://localhost:5000/myprofile'
+      const url = 'https://nxtwatch-backend.onrender.com/myprofile'
       const options = {
         headers: {
           authorization: jwtToken,

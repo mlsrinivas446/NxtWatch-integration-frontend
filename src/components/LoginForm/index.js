@@ -47,7 +47,7 @@ class LoginForm extends Component {
     const {email, password} = this.state
     const userDetails = {email, password}
 
-    const url = 'http://localhost:5000/login'
+    const url = 'https://nxtwatch-backend.onrender.com/login'
 
     try {
       const response = await axios.post(url, userDetails)

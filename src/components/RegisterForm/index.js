@@ -80,7 +80,7 @@ class RegisterForm extends Component {
     const userDetails = {username, email, password, confirmPassword, gender, location}
 
     await axios
-      .post('http://localhost:5000/register', userDetails)
+      .post('https://nxtwatch-backend.onrender.com/register', userDetails)
       .then(response => {
         if (response.data.error) {
           this.setState({errorMsg: response.data.error, isError: true})
