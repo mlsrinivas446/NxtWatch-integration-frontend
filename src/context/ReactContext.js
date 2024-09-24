@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 const ReactContext = React.createContext({
   isDarkMode: false,
@@ -14,9 +14,9 @@ const ReactContext = React.createContext({
   trendingVideoList: [],
   gamesVideoList: [],
   onRetryFailure: () => {},
-  onChangeActiveId: () => { },
+  onChangeActiveId: () => {},
   token: "",
-  setToken: () => {}
+  setToken: () => {},
 })
 
 export default ReactContext

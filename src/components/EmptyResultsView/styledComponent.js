@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const EmptyContentContainer = styled.div`
   display: flex;
@@ -29,7 +29,7 @@ export const EmptyImage = styled.img`
 `
 
 export const EmptyHeading = styled.h1`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#181818')};
+  color: ${props => (props.isDarkMode ? "#ffffff" : "#181818")};
   font-size: 20px;
 
   @media screen and (min-width: 576px) {

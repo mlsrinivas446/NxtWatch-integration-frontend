@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const HomeContainer = styled.div`
   width: 100vw;
   height: 90vh;
-  background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
+  background-color: ${props => (props.isDarkMode ? "#181818" : "#f9f9f9")};
   display: flex;
   flex-direction: column;
   margin-left: auto;
@@ -70,7 +70,7 @@ export const SocialMediaImgContainer = styled.div`
 `
 
 export const PremimunContainer = styled.div`
-  background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
+  background-image: url("https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png");
   background-size: cover;
   width: 100vw;
   display: flex;
@@ -83,7 +83,7 @@ export const PremimunContainer = styled.div`
   margin-bottom: 7px;
 
   @media screen and (min-width: 768px) {
-    background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
+    background-image: url("https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png");
     background-size: cover;
     width: 85vw;
     height: 30vh;

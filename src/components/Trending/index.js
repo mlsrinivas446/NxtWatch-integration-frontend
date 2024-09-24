@@ -1,10 +1,10 @@
-import axios from 'axios'
-import React, {Component} from 'react'
-import {HiFire} from 'react-icons/hi'
-import Loader from 'react-loader-spinner'
-import TrendingCardItem from '../TrendingCardItem'
-import ApiFailureView from '../ApiFailureView'
-import ReactContext from '../../context/ReactContext'
+import axios from "axios"
+import React, {Component} from "react"
+import {HiFire} from "react-icons/hi"
+import Loader from "react-loader-spinner"
+import TrendingCardItem from "../TrendingCardItem"
+import ApiFailureView from "../ApiFailureView"
+import ReactContext from "../../context/ReactContext"
 import {
   ImageIcon,
   TrandingHeading,
@@ -12,13 +12,13 @@ import {
   TrendingIcon,
   TrendingIconContainer,
   TrendingUnorderListContainer,
-} from './trendingStyledComponent'
+} from "./trendingStyledComponent"
 
 const apiConstants = {
-  initial: 'INITIAL',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-  progress: 'IN_PROGRESS',
+  initial: "INITIAL",
+  success: "SUCCESS",
+  failure: "FAILURE",
+  progress: "IN_PROGRESS",
 }
 
 class Trending extends Component {
@@ -34,8 +34,7 @@ class Trending extends Component {
   getTrendingList = async () => {
     this.setState({apiStatus: apiConstants.progress})
 
-    const url =
-      `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${process.env.REACT_APP_TRENDING_VIDEOS_ID}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+    const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${process.env.REACT_APP_TRENDING_VIDEOS_ID}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
 
     try {
       const response = await axios.get(url)
@@ -60,7 +59,7 @@ class Trending extends Component {
         this.setState({apiStatus: apiConstants.failure})
       }
     } catch (error) {
-      console.error('Error fetching videos:', error)
+      console.error("Error fetching videos:", error)
       this.setState({apiStatus: apiConstants.failure})
     }
   }
@@ -77,7 +76,7 @@ class Trending extends Component {
             <div className="loader-container">
               <Loader
                 type="ThreeDots"
-                color={isDarkMode ? '#ffffff' : '#0b69ff'}
+                color={isDarkMode ? "#ffffff" : "#0b69ff"}
                 height="50"
                 width="50"
               />

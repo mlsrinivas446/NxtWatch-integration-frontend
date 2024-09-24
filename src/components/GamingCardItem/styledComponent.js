@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const GameingItem = styled.li`
   list-style-type: none;
-  background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
+  background-color: ${props => (props.isDarkMode ? "#181818" : "#f9f9f9")};
   margin: 8px;
   width: 90vw;
   height: 55vh;
@@ -59,11 +59,11 @@ export const GameingDetailContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 4px;
-  background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
+  background-color: ${props => (props.isDarkMode ? "#181818" : "#f9f9f9")};
 `
 
 export const GamingTitle = styled.h1`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#1e293b')};
+  color: ${props => (props.isDarkMode ? "#ffffff" : "#1e293b")};
   font-size: 14px;
   margin: 0px;
   padding: 0px;

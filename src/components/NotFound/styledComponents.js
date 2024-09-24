@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const TrendingContainer = styled.div`
   width: 100vw;
-  background-color: ${props => (props.isDarkMode ? '#0f0f0f' : '#f9f9f9')};
+  background-color: ${props => (props.isDarkMode ? "#0f0f0f" : "#f9f9f9")};
 `
 
 export const TrendingCardContainer = styled.div`
@@ -46,7 +46,7 @@ export const NotFoundImage = styled.img`
 `
 
 export const NotFoundHeading = styled.h1`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#181818')};
+  color: ${props => (props.isDarkMode ? "#ffffff" : "#181818")};
   font-size: 20px;
 
   @media screen and (min-width: 576px) {

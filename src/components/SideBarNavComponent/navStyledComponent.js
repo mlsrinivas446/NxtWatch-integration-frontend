@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const HomeMenuContainer = styled.div`
   width: 18vw;
@@ -13,7 +13,7 @@ export const HomeMenuContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: ${props => (props.isDarkMode ? '#212121' : '#ffffff')};
+    background-color: ${props => (props.isDarkMode ? "#212121" : "#ffffff")};
   }
 `
 
@@ -47,11 +47,11 @@ export const FilterHomeContainer = styled.div`
 `
 
 export const MenuDescription = styled.p`
-  color: ${props => (props.isDarkMode ? '#94a3b8' : '#231f20')};
+  color: ${props => (props.isDarkMode ? "#94a3b8" : "#231f20")};
   font-size: 12px;
 `
 
 export const ContactHeading = styled.p`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#1e293b')};
+  color: ${props => (props.isDarkMode ? "#ffffff" : "#1e293b")};
   font-size: 14px;
 `

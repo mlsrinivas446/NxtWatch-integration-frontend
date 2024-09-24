@@ -1,50 +1,50 @@
-import {Switch, Route, withRouter} from 'react-router-dom'
-import React, {Component} from 'react'
+import {Switch, Route, withRouter} from "react-router-dom"
+import React, {Component} from "react"
 
-import {IoHomeSharp} from 'react-icons/io5'
-import {HiFire} from 'react-icons/hi'
-import {IoLogoGameControllerB} from 'react-icons/io'
-import {RiMenuAddFill} from 'react-icons/ri'
+import {IoHomeSharp} from "react-icons/io5"
+import {HiFire} from "react-icons/hi"
+import {IoLogoGameControllerB} from "react-icons/io"
+import {RiMenuAddFill} from "react-icons/ri"
 
-import RegisterForm from './components/RegisterForm'
-import LoginForm from './components/LoginForm'
-import Header from './components/Header'
-import SideBarNavComponent from './components/SideBarNavComponent'
-import Home from './components/Home'
-import Trending from './components/Trending'
-import Gaming from './components/Games'
-import SavedVideos from './components/SavedVideos'
-import VideoItemDetailsRoute from './components/VideoItemDetailsRoute'
-import NotFound from './components/NotFound'
+import RegisterForm from "./components/RegisterForm"
+import LoginForm from "./components/LoginForm"
+import Header from "./components/Header"
+import SideBarNavComponent from "./components/SideBarNavComponent"
+import Home from "./components/Home"
+import Trending from "./components/Trending"
+import Gaming from "./components/Games"
+import SavedVideos from "./components/SavedVideos"
+import VideoItemDetailsRoute from "./components/VideoItemDetailsRoute"
+import NotFound from "./components/NotFound"
 
-import ReactContext from './context/ReactContext'
-import ProtectedRoute from './components/ProtectedRoute'
-import './App.css'
+import ReactContext from "./context/ReactContext"
+import ProtectedRoute from "./components/ProtectedRoute"
+import "./App.css"
 
 const menuItemsList = [
   {
-    id: 'HOME',
+    id: "HOME",
     logo: IoHomeSharp,
-    text: 'Home',
-    linkText: '/',
+    text: "Home",
+    linkText: "/",
   },
   {
-    id: 'TRENDING',
+    id: "TRENDING",
     logo: HiFire,
-    text: 'Trending',
-    linkText: '/trending',
+    text: "Trending",
+    linkText: "/trending",
   },
   {
-    id: 'GAMES',
+    id: "GAMES",
     logo: IoLogoGameControllerB,
-    text: 'Gaming',
-    linkText: '/gaming',
+    text: "Gaming",
+    linkText: "/gaming",
   },
   {
-    id: 'SAVEDVIDEOS',
+    id: "SAVEDVIDEOS",
     logo: RiMenuAddFill,
-    text: 'Saved Videos',
-    linkText: '/saved-videos',
+    text: "Saved Videos",
+    linkText: "/saved-videos",
   },
 ]
 
@@ -53,7 +53,7 @@ class App extends Component {
     isDarkMode: false,
     menuList: [...menuItemsList],
     savedList: [],
-    token: '',
+    token: "",
   }
 
   changeThemeMode = () => {
@@ -85,7 +85,7 @@ class App extends Component {
     })
   }
 
-  setToken = (token) => {
+  setToken = token => {
     this.setState({token})
   }
 
@@ -94,7 +94,7 @@ class App extends Component {
     const {location} = this.props
 
     const showHeader =
-      location.pathname !== '/login' && location.pathname !== '/register'
+      location.pathname !== "/login" && location.pathname !== "/register"
 
     return (
       <ReactContext.Provider
@@ -106,7 +106,7 @@ class App extends Component {
           onSave: this.onSave,
           savedList,
           token,
-          setToken:this.setToken
+          setToken: this.setToken,
         }}
       >
         {showHeader && <Header />}

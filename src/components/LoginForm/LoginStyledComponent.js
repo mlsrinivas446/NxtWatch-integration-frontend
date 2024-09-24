@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const LoginContainer = styled.div`
   background-color: #f0f4f8;
@@ -147,4 +147,3 @@ export const LinkText = styled.p`
     font-size: 18px;
   }
 `
-

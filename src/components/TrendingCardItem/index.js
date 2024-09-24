@@ -1,7 +1,7 @@
-import React from 'react'
-import {formatDistanceToNow} from 'date-fns'
-import {Link} from 'react-router-dom'
-import ReactContext from '../../context/ReactContext'
+import React from "react"
+import {formatDistanceToNow} from "date-fns"
+import {Link} from "react-router-dom"
+import ReactContext from "../../context/ReactContext"
 
 import {
   TrendingItem,
@@ -13,50 +13,46 @@ import {
   ViewsCount,
   PublishedAt,
   Dot,
-} from './trendingItemStyledComponent'
+} from "./trendingItemStyledComponent"
 
-const TrendingCardItem = props => (
-  <ReactContext.Consumer>
-    {value => {
-      const {isDarkMode} = value
-      const {trendingCardItem} = props
-      const {
-        name,
-        id,
-        publishedAt,
-        thumbnailUrl,
-        title,
-        viewCount
-      } = trendingCardItem
-      console.log(trendingCardItem)
+function TrendingCardItem(props) {
+  return (
+    <ReactContext.Consumer>
+      {value => {
+        const {isDarkMode} = value
+        const {trendingCardItem} = props
+        const {name, id, publishedAt, thumbnailUrl, title, viewCount} =
+          trendingCardItem
+        console.log(trendingCardItem)
 
-      const distanceYear = formatDistanceToNow(new Date(publishedAt))
+        const distanceYear = formatDistanceToNow(new Date(publishedAt))
 
-      function formatNumberToK(num) {
-        if (num >= 1000) {
-          return (num / 1000).toFixed(1) + 'k'
+        function formatNumberToK(num) {
+          if (num >= 1000) {
+            return `${(num / 1000).toFixed(1)}k`
+          }
+          return num
         }
-        return num
-      }
 
-      return (
-        <Link to={`/videos/${id}`} className="link">
-          <TrendingItem>
-            <TrendingImg src={thumbnailUrl} alt={title} />
-            <TrendingDetailContainer>
-              <TrendingTitle isDarkMode={isDarkMode}>{title}</TrendingTitle>
-              <IbChannelText>{name}</IbChannelText>
-              <ViewsYearContainer>
-                <ViewsCount>{formatNumberToK(viewCount)} views</ViewsCount>
-                <Dot className="dot">.</Dot>
-                <PublishedAt>{distanceYear} ago</PublishedAt>
-              </ViewsYearContainer>
-            </TrendingDetailContainer>
-          </TrendingItem>
-        </Link>
-      )
-    }}
-  </ReactContext.Consumer>
-)
+        return (
+          <Link to={`/videos/${id}`} className="link">
+            <TrendingItem>
+              <TrendingImg src={thumbnailUrl} alt={title} />
+              <TrendingDetailContainer>
+                <TrendingTitle isDarkMode={isDarkMode}>{title}</TrendingTitle>
+                <IbChannelText>{name}</IbChannelText>
+                <ViewsYearContainer>
+                  <ViewsCount>{formatNumberToK(viewCount)} views</ViewsCount>
+                  <Dot className="dot">.</Dot>
+                  <PublishedAt>{distanceYear} ago</PublishedAt>
+                </ViewsYearContainer>
+              </TrendingDetailContainer>
+            </TrendingItem>
+          </Link>
+        )
+      }}
+    </ReactContext.Consumer>
+  )
+}
 
 export default TrendingCardItem

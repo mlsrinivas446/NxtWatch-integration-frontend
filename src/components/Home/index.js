@@ -1,15 +1,15 @@
-import React, {Component} from 'react'
-import Loader from 'react-loader-spinner'
-import axios from 'axios'
+import React, {Component} from "react"
+import Loader from "react-loader-spinner"
+import axios from "axios"
 
-import {IoMdClose, IoMdSearch} from 'react-icons/io'
-import HomeVideoItem from '../HomeVideoItem'
-import ReactContext from '../../context/ReactContext'
+import {IoMdClose, IoMdSearch} from "react-icons/io"
+import HomeVideoItem from "../HomeVideoItem"
+import ReactContext from "../../context/ReactContext"
 
-import ApiFailureView from '../ApiFailureView'
-import EmptyResultsView from '../EmptyResultsView'
+import ApiFailureView from "../ApiFailureView"
+import EmptyResultsView from "../EmptyResultsView"
 
-import './index.css'
+import "./index.css"
 
 import {
   HomeContainer,
@@ -23,20 +23,20 @@ import {
   SearchContainer,
   SearchInput,
   SearchButton,
-} from './homeStyledComponent'
+} from "./homeStyledComponent"
 
 const apiConstants = {
-  initial: 'INITIAL',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-  progress: 'IN_PROGRESS',
+  initial: "INITIAL",
+  success: "SUCCESS",
+  failure: "FAILURE",
+  progress: "IN_PROGRESS",
 }
 
 class Home extends Component {
   state = {
-    searchInput: '',
+    searchInput: "",
     banner: true,
-    search: '',
+    search: "",
     videoList: [],
     apiStatus: apiConstants.initial,
   }
@@ -80,7 +80,7 @@ class Home extends Component {
         this.setState({apiStatus: apiConstants.failure})
       }
     } catch (error) {
-      console.error('Error fetching videos:', error)
+      console.error("Error fetching videos:", error)
       this.setState({apiStatus: apiConstants.failure})
     }
   }
@@ -158,7 +158,7 @@ class Home extends Component {
             <div className="loader-container" data-testid="loader">
               <Loader
                 type="ThreeDots"
-                color={isDarkMode ? '#ffffff' : '#0b69ff'}
+                color={isDarkMode ? "#ffffff" : "#0b69ff"}
                 height="50"
                 width="50"
               />

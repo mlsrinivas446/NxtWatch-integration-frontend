@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const FilterHomeContainer = styled.li`
   padding-left: 15px;
@@ -7,9 +7,9 @@ export const FilterHomeContainer = styled.li`
   width: 60vw;
   flex-direction: row;
   align-items: center;
-  background-color: ${props => (props.isActive ? '#f1f5f9' : null)};
+  background-color: ${props => (props.isActive ? "#f1f5f9" : null)};
   background-color: ${props =>
-    props.isDarkMode && props.isActive ? ' #181818' : null};
+    props.isDarkMode && props.isActive ? " #181818" : null};
   @media screen and (min-width: 576px) {
     width: 35vw;
   }
@@ -18,9 +18,9 @@ export const FilterHomeContainer = styled.li`
     flex-direction: row;
     align-items: center;
     width: 18vw;
-    background-color: ${props => (props.isActive ? '#f1f5f9' : null)};
+    background-color: ${props => (props.isActive ? "#f1f5f9" : null)};
     background-color: ${props =>
-      props.isDarkMode && props.isActive ? ' #181818' : null};
+      props.isDarkMode && props.isActive ? " #181818" : null};
   }
 `
 export const MenuOptions = styled.p`
@@ -28,9 +28,9 @@ export const MenuOptions = styled.p`
   color: ${props => {
     const {isActive, isDarkMode} = props
     if (isActive) {
-      return isDarkMode ? '#ffffff' : '# #181818'
+      return isDarkMode ? "#ffffff" : "# #181818"
     }
-    return isDarkMode ? '#94a3b8' : '#1e293b'
+    return isDarkMode ? "#94a3b8" : "#1e293b"
   }};
   font-weight: ${props => {
     const {isActive} = props
@@ -47,8 +47,8 @@ export const MenuLogo = styled.span`
   color: ${props => {
     const {isDarkMode, isActive} = props
     if (isActive) {
-      return '#ff0000'
+      return "#ff0000"
     }
-    return isDarkMode ? '#94a3b8' : '#231f20'
+    return isDarkMode ? "#94a3b8" : "#231f20"
   }};
 `

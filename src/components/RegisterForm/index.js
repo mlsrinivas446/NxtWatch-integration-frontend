@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import {Link, withRouter} from 'react-router-dom'
-import axios from 'axios';
+import React, {Component} from "react"
+import {Link, withRouter} from "react-router-dom"
+import axios from "axios"
 import {
   RegisterContainer,
   RegisterCardContainer,
@@ -15,18 +15,18 @@ import {
   ErrorMsg,
   GenderInputContainer,
   NavRoute,
-} from './RegisterStyledComponents';
+} from "./RegisterStyledComponents"
 
 class RegisterForm extends Component {
   state = {
-    username: '',
-    password: '',
-    confirmPassword: '',
-    gender: 'male',
-    location: '',
-    email:'',
+    username: "",
+    password: "",
+    confirmPassword: "",
+    gender: "male",
+    location: "",
+    email: "",
     showPassword: false,
-    errorMsg: '',
+    errorMsg: "",
     isError: false,
   }
 
@@ -56,42 +56,50 @@ class RegisterForm extends Component {
 
   onSubmitSuccess = () => {
     const {history} = this.props
-    history.replace('/login')
+    history.replace("/login")
   }
 
   submitForm = async event => {
     event.preventDefault()
 
-    const {username,email, password, confirmPassword, gender, location} = this.state
+    const {username, email, password, confirmPassword, gender, location} =
+      this.state
 
     if (password !== confirmPassword) {
-      this.setState({errorMsg: 'Passwords do not match', isError: true})
+      this.setState({errorMsg: "Passwords do not match", isError: true})
       return
     }
 
     if (!username || !email || !password || !location) {
       this.setState({
-        errorMsg: 'Please fill all required fields',
+        errorMsg: "Please fill all required fields",
         isError: true,
       })
       return
     }
 
-    const userDetails = {username, email, password, confirmPassword, gender, location}
+    const userDetails = {
+      username,
+      email,
+      password,
+      confirmPassword,
+      gender,
+      location,
+    }
 
     await axios
-      .post('https://nxtwatch-backend.onrender.com/register', userDetails)
+      .post("https://nxtwatch-backend.onrender.com/register", userDetails)
       .then(response => {
         if (response.data.error) {
           this.setState({errorMsg: response.data.error, isError: true})
         } else {
-          console.log('Response from server:', response.data)
+          console.log("Response from server:", response.data)
           this.onSubmitSuccess()
         }
       })
       .catch(err => {
         const errorMsg =
-          err.response.data || 'Registration failed. Please try again.'
+          err.response.data || "Registration failed. Please try again."
         this.setState({errorMsg, isError: true})
       })
   }
@@ -157,7 +165,7 @@ class RegisterForm extends Component {
                 id="genderMale"
                 value="male"
                 name="gender"
-                checked={this.state.gender === 'male'}
+                checked={this.state.gender === "male"}
                 onChange={this.setGender}
               />
               <GenderLabel htmlFor="genderMale">Male</GenderLabel>
@@ -166,7 +174,7 @@ class RegisterForm extends Component {
                 id="genderFemale"
                 value="female"
                 name="gender"
-                checked={this.state.gender === 'female'}
+                checked={this.state.gender === "female"}
                 onChange={this.setGender}
               />
               <GenderLabel htmlFor="genderFemale">Female</GenderLabel>
@@ -195,4 +203,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default withRouter(RegisterForm);
+export default withRouter(RegisterForm)

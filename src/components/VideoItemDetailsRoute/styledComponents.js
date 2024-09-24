@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const VideoItemDetailsContainer = styled.div`
   width: 100vw;
   height: 90vh;
-  background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
+  background-color: ${props => (props.isDarkMode ? "#181818" : "#f9f9f9")};
   display: flex;
   flex-direction: column;
   margin-left: auto;
@@ -48,7 +48,7 @@ export const VideoItemDetailedCardContainer = styled.div`
 `
 
 export const VideoTitle = styled.p`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#181818')};
+  color: ${props => (props.isDarkMode ? "#ffffff" : "#181818")};
   font-size: 15px;
 
   @media screen and (min-width: 576px) {
@@ -105,7 +105,7 @@ export const LikeButton = styled.button`
   align-items: center;
   border: none;
   background-color: transparent;
-  color: ${props => (props.like ? '#2563eb' : '#64748b')};
+  color: ${props => (props.like ? "#2563eb" : "#64748b")};
 `
 
 export const DislikeButton = styled.button`
@@ -113,7 +113,7 @@ export const DislikeButton = styled.button`
   align-items: center;
   border: none;
   background-color: transparent;
-  color: ${props => (props.disLike ? '#2563eb' : '#64748b')};
+  color: ${props => (props.disLike ? "#2563eb" : "#64748b")};
 `
 
 export const SaveButton = styled.button`
@@ -121,11 +121,11 @@ export const SaveButton = styled.button`
   align-items: center;
   border: none;
   background-color: transparent;
-  color: ${props => (props.isSaved ? '#2563eb' : '#64748b')};
+  color: ${props => (props.isSaved ? "#2563eb" : "#64748b")};
 `
 
 export const LikeText = styled.p`
-  color: ${props => (props.like ? '#2563eb' : '#64748b')};
+  color: ${props => (props.like ? "#2563eb" : "#64748b")};
   font-size: 13px;
 
   @media screen and (min-width: 992px) {
@@ -135,7 +135,7 @@ export const LikeText = styled.p`
 `
 
 export const DislikeText = styled.p`
-  color: ${props => (props.disLike ? '#2563eb' : '#64748b')};
+  color: ${props => (props.disLike ? "#2563eb" : "#64748b")};
   font-size: 13px;
   @media screen and (min-width: 992px) {
     font-size: 15px;
@@ -144,7 +144,7 @@ export const DislikeText = styled.p`
 `
 
 export const SaveText = styled.p`
-  color: ${props => (props.isSaved ? '#2563eb' : '#64748b')};
+  color: ${props => (props.isSaved ? "#2563eb" : "#64748b")};
   font-size: 13px;
 
   @media screen and (min-width: 992px) {
@@ -180,18 +180,18 @@ export const TeamContentContainer = styled.div`
 
 export const IbText = styled.p`
   font-size: 14px;
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#94a3b8')};
+  color: ${props => (props.isDarkMode ? "#ffffff" : "#94a3b8")};
 `
 
 export const Description = styled.p`
   font-size: 13px;
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#94a3b8')};
+  color: ${props => (props.isDarkMode ? "#ffffff" : "#94a3b8")};
   @media screen and (min-width: 768px) {
     font-size: 16px;
   }
 `
 export const Dot = styled.p`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#475569')};
+  color: ${props => (props.isDarkMode ? "#ffffff" : "#475569")};
   font-size: 14px;
   padding-bottom: 9px;
   margin: 7px;

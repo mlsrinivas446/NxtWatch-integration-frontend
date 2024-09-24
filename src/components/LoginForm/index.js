@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
-import axios from 'axios'
-import Cookies from 'js-cookie'
-import ReactContext from '../../context/ReactContext'
+import React, {Component} from "react"
+import {Link} from "react-router-dom"
+import axios from "axios"
+import Cookies from "js-cookie"
+import ReactContext from "../../context/ReactContext"
 import {
   LoginContainer,
   LoginCardContainer,
@@ -13,14 +13,14 @@ import {
   LoginButton,
   ErrorMsg,
   LinkText,
-} from './LoginStyledComponent'
+} from "./LoginStyledComponent"
 
 class LoginForm extends Component {
   state = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     showPassword: false,
-    errorMsg: '',
+    errorMsg: "",
     isError: false,
   }
 
@@ -37,9 +37,10 @@ class LoginForm extends Component {
   }
 
   onSubmitSuccess = jwtToken => {
-    Cookies.set('jwt_token', jwtToken, {expires: 1})
+    const expires = new Date(Date.now() + 3600 * 1000)
+    Cookies.set("jwt_token", jwtToken, {expires})
     const {history} = this.props
-    history.replace('/')
+    history.replace("/")
   }
 
   submitForm = async event => {
@@ -47,7 +48,7 @@ class LoginForm extends Component {
     const {email, password} = this.state
     const userDetails = {email, password}
 
-    const url = 'https://nxtwatch-backend.onrender.com/login'
+    const url = "https://nxtwatch-backend.onrender.com/login"
 
     try {
       const response = await axios.post(url, userDetails)
@@ -56,7 +57,7 @@ class LoginForm extends Component {
       console.log(error)
       this.setState({
         isError: true,
-        errorMsg: error.response ? error.response.data : 'Something went wrong',
+        errorMsg: error.response ? error.response.data : "Something went wrong",
       })
     }
   }
@@ -106,7 +107,7 @@ class LoginForm extends Component {
                     PASSWORD
                   </NameLabel>
                   <UsernameInput
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     id="password"
                     placeholder="Enter your password"
                     onChange={this.setPassword}

@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const TrendingContainer = styled.div`
   width: 100vw;
   height: 90vh;
-  background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
+  background-color: ${props => (props.isDarkMode ? "#181818" : "#f9f9f9")};
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -31,7 +31,7 @@ export const TrendingCardContainer = styled.div`
 export const TrendingIconContainer = styled.div`
   height: 8vh;
   width: 100vw;
-  background-color: ${props => (props.isDarkMode ? '#313131' : '#f1f1f1')};
+  background-color: ${props => (props.isDarkMode ? "#313131" : "#f1f1f1")};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -60,7 +60,7 @@ export const TrendingIcon = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: ${props => (props.isDarkMode ? '#231f20' : '#cbd5e1')};
+  background-color: ${props => (props.isDarkMode ? "#231f20" : "#cbd5e1")};
   @media screen and (min-width: 576px) {
     height: 40px;
     width: 40px;
@@ -83,12 +83,12 @@ export const ImageIcon = styled.p`
 export const TrandingHeading = styled.h1`
   font-size: 25px;
   padding-left: 10px;
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#212121')};
+  color: ${props => (props.isDarkMode ? "#ffffff" : "#212121")};
 
   @media screen and (min-width: 768px) {
     font-size: 25px;
     padding-left: 10px;
-    color: ${props => (props.isDarkMode ? '#ffffff' : '#212121')};
+    color: ${props => (props.isDarkMode ? "#ffffff" : "#212121")};
   }
 `
 

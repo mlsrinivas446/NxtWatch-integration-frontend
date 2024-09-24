@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const RegisterContainer = styled.div`
   background-color: #f7fafc;
@@ -73,20 +73,19 @@ export const GenderContainer = styled.div`
   flex-direction: column;
   margin-bottom: 20px;
 `
-export const GenderInputContainer =styled.div`
-display: flex;
-align-items: center;
+export const GenderInputContainer = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 export const GenderInput = styled.input`
   margin-right: 12px;
-  accent-color: #3182ce; 
+  accent-color: #3182ce;
 
   &:checked {
-    accent-color: #3182ce; 
+    accent-color: #3182ce;
   }
 `
-
 
 export const GenderLabel = styled.label`
   color: #2d3748;
@@ -133,7 +132,7 @@ export const ErrorMsg = styled.p`
   }
 `
 
-export const NavRoute= styled.p`
+export const NavRoute = styled.p`
   margin-top: 10px;
   font-size: 16px;
   text-decoration: none;

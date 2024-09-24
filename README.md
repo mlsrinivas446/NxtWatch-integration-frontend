@@ -2,10 +2,7 @@ In this assignment let's build an **Nxt Watch** by applying the concepts we have
 
 ### Refer to videos below:
 
-**OMDB APIS** 
-https://omdbapi.com/?i=tt1490017&apikey=c0457457(get detail information about movie)
-https://omdbapi.com/?apikey=c0457457&s=all&type=movie(get all movies list)
-https://omdbapi.com/?apikey=c0457457&s=Star&type=movie(get all search movies list)
+**OMDB APIS** https://omdbapi.com/?i=tt1490017&apikey=c0457457(get detail information about movie) https://omdbapi.com/?apikey=c0457457&s=all&type=movie(get all movies list) https://omdbapi.com/?apikey=c0457457&s=Star&type=movie(get all search movies list)
 
 **Success View** <br/>
 

@@ -1,13 +1,13 @@
-import React, {Component} from 'react'
-import ReactPlayer from 'react-player'
-import Loader from 'react-loader-spinner'
-import moment from 'moment'
+import React, {Component} from "react"
+import ReactPlayer from "react-player"
+import Loader from "react-loader-spinner"
+import moment from "moment"
 
-import axios from 'axios'
-import {BiLike, BiDislike} from 'react-icons/bi'
-import {RiMenuAddFill} from 'react-icons/ri'
-import ApiFailureView from '../ApiFailureView'
-import ReactContext from '../../context/ReactContext'
+import axios from "axios"
+import {BiLike, BiDislike} from "react-icons/bi"
+import {RiMenuAddFill} from "react-icons/ri"
+import ApiFailureView from "../ApiFailureView"
+import ReactContext from "../../context/ReactContext"
 import {
   VideoItemDetailsContainer,
   VideoItemDetailedCardContainer,
@@ -31,20 +31,20 @@ import {
   VideoTitle,
   VideoItemContentContainer,
   Dot,
-} from './styledComponents'
+} from "./styledComponents"
 
-import './index.css'
+import "./index.css"
 
 const apiConstants = {
-  initial: 'INITIAL',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-  progress: 'IN_PROGRESS',
+  initial: "INITIAL",
+  success: "SUCCESS",
+  failure: "FAILURE",
+  progress: "IN_PROGRESS",
 }
 
 class VideoItemDetailsRoute extends Component {
   state = {
-    videoItemDetails: '',
+    videoItemDetails: "",
     apiStatus: apiConstants.initial,
   }
 
@@ -60,7 +60,7 @@ class VideoItemDetailsRoute extends Component {
     this.setState({apiStatus: apiConstants.success})
 
     const url = `https://www.googleapis.com/youtube/v3/videos?id=${id}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}&part=statistics,snippet,contentDetails,status`
-    
+
     try {
       const response = await axios.get(url)
 
@@ -77,9 +77,9 @@ class VideoItemDetailsRoute extends Component {
           viewCount: response.data.items[0].statistics.viewCount,
           tags: response.data.items[0].snippet.tags || [],
           channelTitle: response.data.items[0].snippet.channelTitle,
-          /*isSaved: data.isSaved !== undefined ? data.isSaved : false, 
+          /* isSaved: data.isSaved !== undefined ? data.isSaved : false, 
           isLike: data.isLike !== undefined ? data.isLike : false,
-          isDisLike: data.isDisLike !== undefined ? data.isDisLike : false,*/
+          isDisLike: data.isDisLike !== undefined ? data.isDisLike : false, */
         }
 
         this.setState({
@@ -91,10 +91,9 @@ class VideoItemDetailsRoute extends Component {
       } else {
         this.setState({apiStatus: apiConstants.failure})
       }
+    } catch (err) {
+      this.setState({apiStatus: apiConstants.failure})
     }
-    catch (err) { this.setState({apiStatus: apiConstants.failure})}
-
-    
   }
 
   onSaveChange = onSaveCallback => {
@@ -130,10 +129,10 @@ class VideoItemDetailsRoute extends Component {
             isSaved,
             isLike,
             isDisLike,
-            thumbnailUrl
+            thumbnailUrl,
           } = videoItemDetails
 
-          const { isDarkMode, onSave } = value
+          const {isDarkMode, onSave} = value
 
           const onLikeFun = () => {
             const updatedIsLike = !videoItemDetails.isLike
@@ -174,7 +173,7 @@ class VideoItemDetailsRoute extends Component {
             <div className="loader-container" data-testid="loader">
               <Loader
                 type="ThreeDots"
-                color={isDarkMode ? '#ffffff' : '#0b69ff'}
+                color={isDarkMode ? "#ffffff" : "#0b69ff"}
                 height="50"
                 width="50"
                 data-testid="loader"
@@ -192,7 +191,7 @@ class VideoItemDetailsRoute extends Component {
 
             function formatNumberToK(num) {
               if (num >= 1000) {
-                return (num / 1000).toFixed(1) + 'k'
+                return `${(num / 1000).toFixed(1)}k`
               }
               return num
             }
@@ -241,7 +240,7 @@ class VideoItemDetailsRoute extends Component {
                       >
                         <RiMenuAddFill />
                         <SaveText isSaved={isSaved}>
-                          {isSaved ? 'Saved' : 'Save'}
+                          {isSaved ? "Saved" : "Save"}
                         </SaveText>
                       </SaveButton>
                     </LikesDisLikesSaveContainer>
@@ -279,7 +278,7 @@ class VideoItemDetailsRoute extends Component {
           return (
             <VideoItemDetailsContainer isDarkMode={isDarkMode}>
               <VideoItemContentContainer>
-                  {renderApiViews()}
+                {renderApiViews()}
               </VideoItemContentContainer>
             </VideoItemDetailsContainer>
           )

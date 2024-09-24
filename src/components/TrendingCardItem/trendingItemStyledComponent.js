@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const TrendingItem = styled.li`
   width: 90vw;
@@ -44,7 +44,7 @@ export const TrendingImg = styled.img`
     border-top-left-radius: 5px;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 5px;
-   max-width: 30vw;
+    max-width: 30vw;
     height: 30vh;
   }
   @media screen and (min-width: 992px) {
@@ -57,14 +57,13 @@ export const TrendingDetailContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 5px;
-
 `
 
 export const TrendingTitle = styled.h1`
   font-size: 15px;
   margin: 0;
   padding: 0;
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#1e293b')};
+  color: ${props => (props.isDarkMode ? "#ffffff" : "#1e293b")};
   @media screen and (min-width: 576px) {
     font-size: 15px;
   }
@@ -107,7 +106,7 @@ export const PublishedAt = styled.p`
 `
 
 export const Dot = styled.p`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#475569')};
+  color: ${props => (props.isDarkMode ? "#ffffff" : "#475569")};
   font-size: 14px;
   padding-bottom: 9px;
   margin: 7px;

@@ -1,15 +1,15 @@
-import axios from 'axios'
-import Cookies from 'js-cookie'
-import React, {useEffect, useContext, useState} from 'react'
-import {Link, withRouter} from 'react-router-dom'
-import Popup from 'reactjs-popup'
-import {FaCircleUser} from 'react-icons/fa6'
+import axios from "axios"
+import Cookies from "js-cookie"
+import React, {useEffect, useContext, useState} from "react"
+import {Link, withRouter} from "react-router-dom"
+import Popup from "reactjs-popup"
+import {FaCircleUser} from "react-icons/fa6"
 
-import {IoIosLogOut, IoMdClose, IoMdMenu, IoMdMoon} from 'react-icons/io'
-import {IoSunnyOutline} from 'react-icons/io5'
+import {IoIosLogOut, IoMdClose, IoMdMenu, IoMdMoon} from "react-icons/io"
+import {IoSunnyOutline} from "react-icons/io5"
 
-import SideBarNavItems from '../SideBarNavItems'
-import ReactContext from '../../context/ReactContext'
+import SideBarNavItems from "../SideBarNavItems"
+import ReactContext from "../../context/ReactContext"
 
 import {
   CloseButton,
@@ -29,18 +29,18 @@ import {
   PopupUserDetailsContainer,
   ProfileDetailsContainer,
   ProfileLabelInfo,
-} from './headerStyledComponent'
-import './index.css'
+} from "./headerStyledComponent"
+import "./index.css"
 
-const Header = props => {
+function Header(props) {
   const {history} = props
   const {changeThemeMode, isDarkMode, menuList} = useContext(ReactContext)
   const [user, setUser] = useState(null)
-  const jwtToken = Cookies.get('jwt_token')
+  const jwtToken = Cookies.get("jwt_token")
 
   useEffect(() => {
     const fetchProfileData = async () => {
-      const url = 'https://nxtwatch-backend.onrender.com/myprofile'
+      const url = "https://nxtwatch-backend.onrender.com/myprofile"
       const options = {
         headers: {
           authorization: jwtToken,
@@ -51,25 +51,25 @@ const Header = props => {
         const userDetails = response.data
         setUser(userDetails)
       } catch (error) {
-      if (error.code === 'ECONNRESET') {
-        console.log('Connection reset. Retrying...');
-        fetchProfileData()
-      } else {
-        console.error('Error fetching profile data:', error)
+        if (error.code === "ECONNRESET") {
+          console.log("Connection reset. Retrying...")
+          fetchProfileData()
+        } else {
+          console.error("Error fetching profile data:", error)
+        }
       }
     }
-  }
 
     if (jwtToken) {
       fetchProfileData()
     } else {
-      history.replace('/login')
+      history.replace("/login")
     }
   }, [jwtToken, history])
 
   const onConfirmLogout = () => {
-    Cookies.remove('jwt_token')
-    history.replace('/login')
+    Cookies.remove("jwt_token")
+    history.replace("/login")
   }
 
   const changeTheme = () => {
@@ -89,7 +89,7 @@ const Header = props => {
   )
 
   const navToHome = () => {
-    history.replace('/')
+    history.replace("/")
   }
 
   const logoImgUrl = isDarkMode ? (
@@ -132,17 +132,17 @@ const Header = props => {
             <FaCircleUser className="profile-icon" />
             <ProfileDetailsContainer isDarkMode={isDarkMode}>
               <ProfileLabelInfo isDarkMode={isDarkMode}>
-                {user?.username || 'User'}
+                {user?.username || "User"}
               </ProfileLabelInfo>
             </ProfileDetailsContainer>
             <ProfileDetailsContainer isDarkMode={isDarkMode}>
               <ProfileLabelInfo isDarkMode={isDarkMode}>
-                {user?.email || 'email'}
+                {user?.email || "email"}
               </ProfileLabelInfo>
             </ProfileDetailsContainer>
             <ProfileDetailsContainer isDarkMode={isDarkMode}>
               <ProfileLabelInfo isDarkMode={isDarkMode}>
-                {user?.location || 'location'}
+                {user?.location || "location"}
               </ProfileLabelInfo>
             </ProfileDetailsContainer>
           </PopupUserDetailsContainer>

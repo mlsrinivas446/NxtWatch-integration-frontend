@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const ApiFailureContentContainer = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ export const ApiFailureImage = styled.img`
 `
 
 export const ApiFailureHeading = styled.h1`
-  color: ${props => (props.isDarkMode ? '#ffffff' : '#181818')};
+  color: ${props => (props.isDarkMode ? "#ffffff" : "#181818")};
   font-size: 18px;
   @media screen and (min-width: 576px) {
     font-size: 20px;
