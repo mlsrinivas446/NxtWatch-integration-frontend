@@ -30,8 +30,8 @@ import {
   Description,
   VideoTitle,
   VideoItemContentContainer,
-  Dot,
-} from "./styledComponents"
+  FormattedDate,
+} from './styledComponents'
 
 import "./index.css"
 
@@ -187,7 +187,7 @@ class VideoItemDetailsRoute extends Component {
 
           const renderSuccessView = () => {
             const someDate = moment(publishedAt)
-            const formatedDate = someDate.fromNow()
+            const formattedDate = someDate.format('DD MMMM, YYYY')
 
             function formatNumberToK(num) {
               if (num >= 1000) {
@@ -213,8 +213,6 @@ class VideoItemDetailsRoute extends Component {
                       <ViewsCount isDarkMode={isDarkMode}>
                         {formatNumberToK(viewCount)} views
                       </ViewsCount>
-                      <Dot className="dot">.</Dot>
-                      <ViewsCount>{formatedDate} ago</ViewsCount>
                     </ThumbnillViewsContainer>
                     <LikesDisLikesSaveContainer>
                       <LikeButton
@@ -240,7 +238,7 @@ class VideoItemDetailsRoute extends Component {
                       >
                         <RiMenuAddFill />
                         <SaveText isSaved={isSaved}>
-                          {isSaved ? "Saved" : "Save"}
+                          {isSaved ? 'Saved' : 'Save'}
                         </SaveText>
                       </SaveButton>
                     </LikesDisLikesSaveContainer>
@@ -250,6 +248,9 @@ class VideoItemDetailsRoute extends Component {
                     <TeamLogoImage src={thumbnailUrl} alt="channel logo" />
                     <TeamContentContainer>
                       <IbText isDarkMode={isDarkMode}>{name}</IbText>
+                      <FormattedDate isDarkMode={isDarkMode}>
+                        {formattedDate}
+                      </FormattedDate>
                       <Description isDarkMode={isDarkMode}>
                         {description}
                       </Description>

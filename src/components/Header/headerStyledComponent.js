@@ -88,6 +88,25 @@ export const LogoutButton = styled.button`
   }
 `
 
+export const CancelConfirmButton = styled.button`
+  border: ${props =>
+    `2px solid ${props.isDarkMode ? '#ffffff' : props.border}`};
+  background-color: ${props => (props.bgColor ? props.bgColor : 'transparent')};
+  color: ${props => (props.isDarkMode ? '#ffffff' : props.color)};
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 5px;
+  margin-left: 10px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 15px;
+    padding: 8px;
+    display: flex;
+  }
+`
+
+
+
 export const MobileLogoutButton = styled.button`
   border: none;
   background-color: transparent;
@@ -108,7 +127,12 @@ export const PopupLogoutContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 8px;
-  background-color: ${props => (props.isDarkMode ? "#212121" : "#f4f4f4")};
+  background-color: ${props => (props.isDarkMode ? '#212121' : '#f4f4f4')};
+
+  @media screen and (min-width: 576px) {
+    width: 60vw;
+    height: 30vh;
+  }
 
   @media screen and (min-width: 768px) {
     width: 40vw;

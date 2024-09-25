@@ -33,26 +33,19 @@ export const ListItemContainer = styled.li`
 
 export const ThumbnillImage = styled.img`
   width: 100%;
-  height: 30vh;
+  height: 60%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   object-fit: cover;
 
-  @media screen and (min-width: 576px) {
-    height: 25vh;
-  }
-  @media screen and (min-width: 768px) {
-    height: 28vh;
-  }
-  @media screen and (min-width: 992px) {
-    height: 25vh;
-  }
 `
 
 export const ThumbnillContentContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   padding: 8px;
+  margin: 0px;
+  height: 40%;
 `
 
 export const ThumbnillTitleBatchViewContainer = styled.div`
@@ -60,6 +53,7 @@ export const ThumbnillTitleBatchViewContainer = styled.div`
   flex-direction: column;
   margin: 0px;
   padding: 0px;
+  height: 100%;
 `
 
 export const ThumbnillProfileImage = styled.img`
@@ -71,38 +65,46 @@ export const ThumbnillProfileImage = styled.img`
 `
 
 export const ThumbnillTitle = styled.h1`
-  color: ${props => (props.isDarkMode ? "#ffffff" : "#1e293b")};
-  font-size: 14px;
+  color: ${props => (props.isDarkMode ? '#ffffff' : '#1e293b')};
+  font-size: 13px;
   margin: 0px;
   padding: 0px;
+  @media screen and (min-width: 478px) {
+    font-size: 14px;
+  }
   @media screen and (min-width: 576px) {
-    font-size: 16px;
+    font-size: 15px;
   }
 `
 
 export const ThumbnillBatchName = styled.p`
-  color: ${props => (props.isDarkMode ? "#ffffff" : "#475569")};
-  font-size: 14px;
+  color: ${props => (props.isDarkMode ? '#ffffff' : '#475569')};
+  font-size: 13px;
   font-weight: 500;
   margin: 0px;
   padding-top: 3px;
   color: #94a3b8;
+  @media screen and (min-width: 478px) {
+    font-size: 14px;
+  }
 `
 
 export const ThumbnillViewsContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: 0px;
-  padding: 0px;
+  padding: 0;
   color: #94a3b8;
 `
 
 export const ViewsCount = styled.p`
   color: #94a3b8;
-  font-size: 14px;
+  font-size: 13px;
   margin: 0px;
   padding: 0px;
   @media screen and (min-width: 576px) {
+    font-size: 14px;
+  }
+  @media screen and (min-width: 768px) {
     font-size: 15px;
   }
 `
@@ -110,10 +112,11 @@ export const ViewsCount = styled.p`
 export const Dot = styled.p`
   color: #94a3b8;
   font-size: 14px;
-  padding-bottom: 9px;
+  padding-bottom: 8px;
   margin: 7px;
   font-weight: 500;
   @media screen and (min-width: 576px) {
     font-size: 15px;
   }
 `
+export const FormattedDate = styled.p``

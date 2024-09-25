@@ -81,7 +81,7 @@ export const ThumbnillViewsContainer = styled.div`
 `
 
 export const ViewsCount = styled.p`
-  color: #475569;
+  color: ${props => (props.like ? '#2563eb' : '#64748b')};
   font-size: 13px;
 
   @media screen and (min-width: 992px) {
@@ -199,4 +199,9 @@ export const Dot = styled.p`
   @media screen and (min-width: 576px) {
     font-size: 15px;
   }
+`
+export const FormattedDate = styled.p`
+  font-size: 14px;
+  color: ${props => (props.isDarkMode ? '#ffffff' : '#94a3b8')};
+  font-weight: 500;
 `

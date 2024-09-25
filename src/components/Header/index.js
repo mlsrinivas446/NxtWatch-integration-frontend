@@ -29,7 +29,8 @@ import {
   PopupUserDetailsContainer,
   ProfileDetailsContainer,
   ProfileLabelInfo,
-} from "./headerStyledComponent"
+  CancelConfirmButton,
+} from './headerStyledComponent'
 import "./index.css"
 
 function Header(props) {
@@ -132,17 +133,17 @@ function Header(props) {
             <FaCircleUser className="profile-icon" />
             <ProfileDetailsContainer isDarkMode={isDarkMode}>
               <ProfileLabelInfo isDarkMode={isDarkMode}>
-                {user?.username || "User"}
+                {user?.username || 'User'}
               </ProfileLabelInfo>
             </ProfileDetailsContainer>
             <ProfileDetailsContainer isDarkMode={isDarkMode}>
               <ProfileLabelInfo isDarkMode={isDarkMode}>
-                {user?.email || "email"}
+                {user?.email || 'email'}
               </ProfileLabelInfo>
             </ProfileDetailsContainer>
             <ProfileDetailsContainer isDarkMode={isDarkMode}>
               <ProfileLabelInfo isDarkMode={isDarkMode}>
-                {user?.location || "location"}
+                {user?.location || 'location'}
               </ProfileLabelInfo>
             </ProfileDetailsContainer>
           </PopupUserDetailsContainer>
@@ -179,13 +180,22 @@ function Header(props) {
         <Popup
           modal
           trigger={
-            <LogoutButton
-              isDarkMode={isDarkMode}
-              color="#3b82f6"
-              border="#3b82f6"
-            >
-              Logout
-            </LogoutButton>
+            <div>
+              <LogoutButton
+                isDarkMode={isDarkMode}
+                color="#3b82f6"
+                border="#3b82f6"
+                className="desktop-logout-button"
+              >
+                Logout
+              </LogoutButton>
+              <MobileLogoutButton
+                isDarkMode={isDarkMode}
+                className="mobile-logout-button"
+              >
+                <IoIosLogOut />
+              </MobileLogoutButton>
+            </div>
           }
           className="popup-content"
           position="bottom-left"
@@ -196,60 +206,21 @@ function Header(props) {
                 Are you sure you want to logout?
               </PopupText>
               <div className="popup-button-container">
-                <LogoutButton
+                <CancelConfirmButton
                   color="#7e858e"
                   border="#7e858e"
                   onClick={() => close()}
                 >
                   Cancel
-                </LogoutButton>
-                <LogoutButton
+                </CancelConfirmButton>
+                <CancelConfirmButton
                   bgColor="#3b82f6"
                   color="#ffffff"
                   border="#3b82f6"
                   onClick={onConfirmLogout}
                 >
                   Confirm
-                </LogoutButton>
-              </div>
-            </PopupLogoutContainer>
-          )}
-        </Popup>
-        <Popup
-          modal
-          trigger={
-            <MobileLogoutButton
-              isDarkMode={isDarkMode}
-              className="mobile-logout-button"
-            >
-              <IoIosLogOut />
-            </MobileLogoutButton>
-          }
-          className="popup-content"
-          position="bottom-left"
-        >
-          {close => (
-            <PopupLogoutContainer isDarkMode={isDarkMode}>
-              <PopupText isDarkMode={isDarkMode}>
-                Are you sure you want to logout?
-              </PopupText>
-              <div className="popup-button-container">
-                <LogoutButton
-                  color="#7e858e"
-                  border="#7e858e"
-                  onClick={() => close()}
-                >
-                  Cancel
-                </LogoutButton>
-
-                <LogoutButton
-                  bgColor="#3b82f6"
-                  color="#ffffff"
-                  border="#3b82f6"
-                  onClick={onConfirmLogout}
-                >
-                  Confirm
-                </LogoutButton>
+                </CancelConfirmButton>
               </div>
             </PopupLogoutContainer>
           )}
