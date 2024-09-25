@@ -5,7 +5,7 @@ export const ListItemContainer = styled.li`
   background-color: ${props => (props.isDarkMode ? "#181818" : "#f9f9f9")};
   margin: 8px;
   width: 90vw;
-  height: 50vh;
+  height: 40vh;
   border-radius: 5px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   &:hover {
