@@ -95,13 +95,28 @@ export const GamesHeading = styled.h1`
 `
 
 export const GamesUnorderListContainer = styled.ul`
-  width: 100vw;
   display: flex;
-  flex-direction: row;
-  justify-content: cenetr;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
+  width: 95vw;
+  margin: auto;
+  padding: 0;
+  @media screen and (min-width: 576px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+  }
   @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
     width: 85vw;
+    padding: 10px;
   }
 `

@@ -162,6 +162,7 @@ export const MobileRoutesContainer = styled.ul`
   align-items: center;
   background-color: ${props => (props.isDarkMode ? "#212121" : "#ffffff")};
   margin: 0px;
+  margin-top: 7px;
   width: 60vw;
   padding: 0px;
   @media screen and (min-width: 576px) {
