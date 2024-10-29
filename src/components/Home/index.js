@@ -53,25 +53,14 @@ class Home extends Component {
   getVideosListApi = async () => {
     this.setState({apiStatus: apiConstants.progress})
 
-    const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${process.env.REACT_APP_HOME_VIDEOS_ID}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
-
+    //const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${process.env.REACT_APP_HOME_VIDEOS_ID}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+    const url = 'https://nxtwatch-backend.onrender.com/api/home'
     try {
       const response = await axios.get(url)
 
       if (response.status === 200) {
-        const formatVideosList = response.data.items.map(each => ({
-          name: each?.snippet?.channelTitle,
-          profileImageUrl: each?.snippet?.thumbnails?.high?.url,
-          id: each?.id,
-          publishedAt: each?.snippet?.publishedAt,
-          thumbnailUrl: each?.snippet?.thumbnails?.high?.url,
-          viewCount: each?.statistics?.viewCount,
-          title: each?.snippet?.title,
-          isSaved: false,
-        }))
-
         this.setState({
-          videoList: formatVideosList,
+          videoList: response.data,
           apiStatus: apiConstants.success,
         })
       } else if (response.status === 401) {

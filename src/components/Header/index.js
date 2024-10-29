@@ -40,26 +40,27 @@ function Header(props) {
   const jwtToken = Cookies.get("jwt_token")
 
   useEffect(() => {
+
     const fetchProfileData = async () => {
-      const url = "https://nxtwatch-backend.onrender.com/myprofile"
-      const options = {
-        headers: {
-          authorization: jwtToken,
-        },
-      }
       try {
-        const response = await axios.get(url, options)
-        const userDetails = response.data
-        setUser(userDetails)
+        const url = 'https://nxtwatch-backend.onrender.com/api/my-profile';
+        const options = {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        };
+        const response = await axios.get(url, options);
+        const userDetails = response.data;
+        setUser(userDetails);
       } catch (error) {
         if (error.code === "ECONNRESET") {
-          console.log("Connection reset. Retrying...")
-          fetchProfileData()
+          console.log("Connection reset. Retrying...");
+          fetchProfileData();
         } else {
-          console.error("Error fetching profile data:", error)
+          console.error("Error fetching profile data:", error.response?.data || error.message);
         }
       }
-    }
+    };
 
     if (jwtToken) {
       fetchProfileData()

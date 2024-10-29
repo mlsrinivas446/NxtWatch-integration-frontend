@@ -88,7 +88,7 @@ class RegisterForm extends Component {
     }
 
     await axios
-      .post("https://nxtwatch-backend.onrender.com/register", userDetails)
+      .post("https://nxtwatch-backend.onrender.com/api/register", userDetails)
       .then(response => {
         if (response.data.error) {
           this.setState({errorMsg: response.data.error, isError: true})

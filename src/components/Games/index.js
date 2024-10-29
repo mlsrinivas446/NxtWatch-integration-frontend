@@ -36,24 +36,14 @@ class Gaming extends Component {
   getTrendingList = async () => {
     this.setState({apiStatus: apiConstants.progress})
 
-    const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLiZN0Fd_jMqemqNeeFfV6Tc8OZ3sXAgkZ&key=AIzaSyB2kPZq_q_ju7SBl2dpp61zzxpjhjROkX0&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
-
+    //const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLiZN0Fd_jMqemqNeeFfV6Tc8OZ3sXAgkZ&key=AIzaSyB2kPZq_q_ju7SBl2dpp61zzxpjhjROkX0&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+    const url ="https://nxtwatch-backend.onrender.com/api/gaming"
     try {
       const response = await axios.get(url)
 
       if (response.status === 200) {
-        const formatTrendingData = response.data.items.map(each => ({
-          name: each?.snippet?.channelTitle,
-          profileImageUrl: each?.snippet?.thumbnails?.high?.url,
-          id: each?.snippet?.resourceId.videoId,
-          publishedAt: each?.snippet?.publishedAt,
-          thumbnailUrl: each?.snippet?.thumbnails?.high?.url,
-          title: each?.snippet?.title,
-          isSaved: false,
-        }))
-
         this.setState({
-          trendingList: formatTrendingData,
+          trendingList: response.data,
           apiStatus: apiConstants.success,
         })
       } else {

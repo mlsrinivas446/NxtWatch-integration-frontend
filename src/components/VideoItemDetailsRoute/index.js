@@ -59,31 +59,17 @@ class VideoItemDetailsRoute extends Component {
 
     this.setState({apiStatus: apiConstants.success})
 
-    const url = `https://www.googleapis.com/youtube/v3/videos?id=${id}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}&part=statistics,snippet,contentDetails,status`
+    const url = `https://nxtwatch-backend.onrender.com/api/video-details/${id}`
 
     try {
       const response = await axios.get(url)
+      console.log(response)
 
       if (response.status === 200) {
-        const formatVideoDetails = {
-          name: response.data.items[0].snippet.channelTitle,
-          profileImageUrl: `https://www.youtube.com/watch?v=${response.data.items[0].id}`,
-          description: response.data.items[0].snippet.description,
-          id: response.data.items[0].id,
-          publishedAt: response.data.items[0].snippet.publishedAt,
-          thumbnailUrl: response.data.items[0].snippet.thumbnails.high.url,
-          title: response.data.items[0].snippet.title,
-          videoUrl: `https://www.youtube.com/watch?v=${response.data.items[0].id}`,
-          viewCount: response.data.items[0].statistics.viewCount,
-          tags: response.data.items[0].snippet.tags || [],
-          channelTitle: response.data.items[0].snippet.channelTitle,
-          /* isSaved: data.isSaved !== undefined ? data.isSaved : false, 
-          isLike: data.isLike !== undefined ? data.isLike : false,
-          isDisLike: data.isDisLike !== undefined ? data.isDisLike : false, */
-        }
+
 
         this.setState({
-          videoItemDetails: formatVideoDetails,
+          videoItemDetails: response.data,
           apiStatus: apiConstants.success,
         })
       } else if (response.status === 401) {
