@@ -1,5 +1,6 @@
 import React, {Component} from "react"
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
+import {Helmet} from 'react-helmet'
 import axios from "axios"
 import Cookies from "js-cookie"
 import ReactContext from "../../context/ReactContext"
@@ -13,7 +14,8 @@ import {
   LoginButton,
   ErrorMsg,
   LinkText,
-} from "./LoginStyledComponent"
+} from './LoginStyledComponent'
+
 
 class LoginForm extends Component {
   state = {
@@ -84,6 +86,9 @@ class LoginForm extends Component {
 
           return (
             <LoginContainer isDarkMode>
+              <Helmet>
+                <title>Nxtwatch Login</title>
+              </Helmet>
               <LoginCardContainer
                 isDarkMode={isDarkMode}
                 onSubmit={this.submitForm}
@@ -107,7 +112,7 @@ class LoginForm extends Component {
                     PASSWORD
                   </NameLabel>
                   <UsernameInput
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     id="password"
                     placeholder="Enter your password"
                     onChange={this.setPassword}
@@ -118,7 +123,7 @@ class LoginForm extends Component {
                 <LoginButton isDarkMode>Login</LoginButton>
                 <LinkText>
                   Don't have account?
-                  <Link to="/register">Register</Link>
+                  <Link to="/register"> Register</Link>
                 </LinkText>
                 {isError && (
                   <ErrorMsg className="error-Msg">*{errorMsg}</ErrorMsg>

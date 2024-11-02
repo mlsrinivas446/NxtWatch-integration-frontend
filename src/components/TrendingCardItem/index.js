@@ -23,7 +23,6 @@ function TrendingCardItem(props) {
         const {trendingCardItem} = props
         const {name, id, publishedAt, thumbnailUrl, title, viewCount} =
           trendingCardItem
-        console.log(trendingCardItem)
 
         const distanceYear = formatDistanceToNow(new Date(publishedAt))
 

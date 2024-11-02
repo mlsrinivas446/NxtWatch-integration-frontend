@@ -1,4 +1,5 @@
 import React from "react"
+import {Helmet} from 'react-helmet'
 import SideBarNavComponent from "../SideBarNavComponent"
 
 import ReactContext from "../../context/ReactContext"
@@ -24,6 +25,9 @@ function NotFound() {
 
         return (
           <TrendingContainer isDarkMode={isDarkMode}>
+            <Helmet>
+              <title>Nxtwatch Page not found</title>
+            </Helmet>
             <TrendingCardContainer>
               <SideBarNavComponent />
               <TrendingContentContainer isDarkMode={isDarkMode}>

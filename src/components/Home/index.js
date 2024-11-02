@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import Loader from "react-loader-spinner"
 import axios from "axios"
+import {Helmet} from 'react-helmet'
 
 import {IoMdClose, IoMdSearch} from "react-icons/io"
 import HomeVideoItem from "../HomeVideoItem"
@@ -208,6 +209,9 @@ class Home extends Component {
 
           return (
             <HomeContainer isDarkMode={isDarkMode}>
+              <Helmet>
+                <title>Nxtwatch Home</title>
+              </Helmet>
               <HomeCardContentContainer>
                 {renderApiViews()}
               </HomeCardContentContainer>

@@ -1,4 +1,5 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
+import {Helmet} from 'react-helmet'
 import {Link, withRouter} from "react-router-dom"
 import axios from "axios"
 import {
@@ -109,6 +110,9 @@ class RegisterForm extends Component {
 
     return (
       <RegisterContainer>
+        <Helmet>
+          <title>Nxtwatch Register</title>
+        </Helmet>
         <RegisterCardContainer
           as="form"
           onSubmit={this.submitForm}
@@ -165,7 +169,7 @@ class RegisterForm extends Component {
                 id="genderMale"
                 value="male"
                 name="gender"
-                checked={this.state.gender === "male"}
+                checked={this.state.gender === 'male'}
                 onChange={this.setGender}
               />
               <GenderLabel htmlFor="genderMale">Male</GenderLabel>
@@ -174,7 +178,7 @@ class RegisterForm extends Component {
                 id="genderFemale"
                 value="female"
                 name="gender"
-                checked={this.state.gender === "female"}
+                checked={this.state.gender === 'female'}
                 onChange={this.setGender}
               />
               <GenderLabel htmlFor="genderFemale">Female</GenderLabel>
@@ -194,7 +198,7 @@ class RegisterForm extends Component {
           <RegisterButton type="submit">Register</RegisterButton>
 
           <NavRoute>
-            Already have an account?<Link to="/login">Login</Link>
+            Already have an account?<Link to="/login"> Login</Link>
           </NavRoute>
           {isError && <ErrorMsg>*{errorMsg}</ErrorMsg>}
         </RegisterCardContainer>

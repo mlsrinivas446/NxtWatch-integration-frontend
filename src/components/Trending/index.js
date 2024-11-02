@@ -1,5 +1,6 @@
 import axios from "axios"
-import React, {Component} from "react"
+import React, { Component } from "react"
+import {Helmet} from 'react-helmet'
 import {HiFire} from "react-icons/hi"
 import Loader from "react-loader-spinner"
 import TrendingCardItem from "../TrendingCardItem"
@@ -104,6 +105,9 @@ class Trending extends Component {
 
           return (
             <TrendingContainer isDarkMode={isDarkMode} data-testid="trending">
+              <Helmet>
+                <title>Nxtwatch Trending</title>
+              </Helmet>
               <TrendingIconContainer isDarkMode={isDarkMode}>
                 <TrendingIcon isDarkMode={isDarkMode}>
                   <ImageIcon isDarkMode={isDarkMode}>

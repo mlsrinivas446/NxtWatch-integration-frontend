@@ -147,3 +147,7 @@ export const LinkText = styled.p`
     font-size: 18px;
   }
 `
+export const HelmetElement = styled.img`
+  height: 20px;
+  width: 20px;
+`

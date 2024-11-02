@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import ReactPlayer from "react-player"
+import {Helmet} from 'react-helmet'
 import Loader from "react-loader-spinner"
 import moment from "moment"
 
@@ -14,7 +15,7 @@ import {
   VideoItemDetailDescription,
   ThumbnillViewsContainer,
   ViewsCount,
-  ReviesLikesContainer,
+  ReviewsLikesContainer,
   LikesDisLikesSaveContainer,
   LikeButton,
   DislikeButton,
@@ -184,6 +185,9 @@ class VideoItemDetailsRoute extends Component {
 
             return (
               <VideoItemDetailedCardContainer key={id}>
+                <Helmet>
+                  <title>Nxtwatch Video Details</title>
+                </Helmet>
                 <div className="player-wrapper">
                   <ReactPlayer
                     className="react-player"
@@ -194,7 +198,7 @@ class VideoItemDetailsRoute extends Component {
                 </div>
                 <VideoItemDetailDescription isDarkMode={isDarkMode}>
                   <VideoTitle isDarkMode={isDarkMode}>{title}</VideoTitle>
-                  <ReviesLikesContainer>
+                  <ReviewsLikesContainer>
                     <ThumbnillViewsContainer>
                       <ViewsCount isDarkMode={isDarkMode}>
                         {formatNumberToK(viewCount)} views
@@ -228,7 +232,7 @@ class VideoItemDetailsRoute extends Component {
                         </SaveText>
                       </SaveButton>
                     </LikesDisLikesSaveContainer>
-                  </ReviesLikesContainer>
+                  </ReviewsLikesContainer>
                   <HorizontalLine />
                   <TeamIbContainer>
                     <TeamLogoImage src={thumbnailUrl} alt="channel logo" />

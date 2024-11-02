@@ -1,4 +1,5 @@
 import React from "react"
+import {Helmet} from 'react-helmet'
 import ReactContext from "../../context/ReactContext"
 
 import {
@@ -26,6 +27,9 @@ function NotFound(props) {
 
         return (
           <ApiFailureContentContainer isDarkMode={isDarkMode}>
+            <Helmet>
+              <title>Nxtwatch API failure</title>
+            </Helmet>
             <ApiFailureImage src={notImage} alt="failure view" />
             <ApiFailureHeading isDarkMode={isDarkMode}>
               Oops! Something Went Wrong

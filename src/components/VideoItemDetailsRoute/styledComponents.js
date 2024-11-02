@@ -60,7 +60,7 @@ export const VideoTitle = styled.p`
   }
 `
 
-export const VideoItemDetailDescription = styled.p`
+export const VideoItemDetailDescription = styled.div`
   color: #1e293b;
   font-size: 15px;
 
@@ -89,7 +89,7 @@ export const ViewsCount = styled.p`
   }
 `
 
-export const ReviesLikesContainer = styled.div`
+export const ReviewsLikesContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

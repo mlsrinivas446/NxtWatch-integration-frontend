@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, {Component} from "react"
-import {IoLogoGameControllerB} from "react-icons/io"
+import { IoLogoGameControllerB } from "react-icons/io"
+import {Helmet} from 'react-helmet'
 import Loader from "react-loader-spinner"
 import ReactContext from "../../context/ReactContext"
 import ApiFailureView from "../ApiFailureView"
@@ -108,6 +109,9 @@ class Gaming extends Component {
 
           return (
             <GamesContainer isDarkMode={isDarkMode}>
+              <Helmet>
+                <title>Nxtwatch Gaming</title>
+              </Helmet>
               <GamesContentContainer isDarkMode={isDarkMode}>
                 <GamesIconContainer isDarkMode={isDarkMode}>
                   <GamesIcon isDarkMode={isDarkMode}>

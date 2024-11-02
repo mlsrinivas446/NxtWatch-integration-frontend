@@ -1,4 +1,5 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
+import {Helmet} from 'react-helmet'
 import {RiMenuAddFill} from "react-icons/ri"
 import TrendingCardItem from "../TrendingCardItem"
 import EmptySavedVideosView from "../EmptySavedVideosView"
@@ -23,6 +24,9 @@ class SavedVideos extends Component {
 
           return (
             <SavedContainer isDarkMode={isDarkMode} data-testid="savedVideos">
+              <Helmet>
+                <title>Nxtwatch Saved Videos</title>
+              </Helmet>
               <SavedContentContainer isDarkMode={isDarkMode}>
                 {savedList.length === 0 ? (
                   <EmptySavedVideosView />
