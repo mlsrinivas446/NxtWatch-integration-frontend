@@ -114,18 +114,25 @@ class App extends Component {
       >
         {showHeader && <Header />}
         {showHeader && <SideBarNavComponent />}
-        <Suspense fallback={<div className="loader-container">
+        <Suspense
+          fallback={
+            <div
+              className="loader-container"
+              style={{
+                display: 'flex',
+                'alignItems': 'center',
+                'justifyContent': 'center',
+              }}
+            >
               <Loader
                 type="ThreeDots"
-                color={isDarkMode ? "#ffffff" : "#0b69ff"}
+                color={isDarkMode ? '#ffffff' : '#0b69ff'}
                 height="50"
-            width="50"
-            style={{
-              "display": "flex",
-              "align- items": "center",
-              "justify-content": "center"
-            }}
-              /></div>}>
+                width="50"
+              />
+            </div>
+          }
+        >
           <Switch>
             <Route exact path="/register" component={RegisterForm} />
             <Route exact path="/login" component={LoginForm} />
